@@ -1,0 +1,49 @@
+vsim -voptargs=+acc work.tb_ALU
+# vsim -voptargs="+acc" work.tb_ALU 
+# Start time: 23:59:53 on Jun 03,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.tb_ALU(fast)
+# Loading work.ALU(fast)
+# Compile of tb_ALU.sv was successful.
+vsim -voptargs=+acc work.tb_ALU
+# End time: 00:00:33 on Jun 04,2025, Elapsed time: 0:00:40
+# Errors: 0, Warnings: 2
+# vsim -voptargs="+acc" work.tb_ALU 
+# Start time: 00:00:33 on Jun 04,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_ALU(fast)
+# Loading work.ALU(fast)
+run -all
+# Starting ALU testbench...
+# [AND] R1 = 170, R2 = 204 => OUT = 136, OVERFLOW = 00, ZF = 0
+# [XOR] R1 = 240, R2 = 170 => OUT = 90, OVERFLOW = 00, ZF = 0
+# [SHL] R1 = 3, R2 = 1 => OUT = 8, OVERFLOW = 00, ZF = 0
+# [SHR] R1 = 2, R2 = 128 => OUT = 32, OVERFLOW = 00, ZF = 0
+# [ADD (normal)] R1 = 15, R2 = 10 => OUT = 25, OVERFLOW = 00, ZF = 0
+# [ADD (overflow)] R1 = 255, R2 = 255 => OUT = 254, OVERFLOW = 01, ZF = 0
+# [ADD (ZF=1)] R1 = 0, R2 = 0 => OUT = 0, OVERFLOW = 00, ZF = 1
+# [INVALID] R1 = 170, R2 = 85 => OUT = 0, OVERFLOW = 00, ZF = 0
+# ALU testbench complete.
+# Compile of tb_ALU.sv was successful.
+vsim -voptargs=+acc work.tb_ALU
+# End time: 00:03:45 on Jun 04,2025, Elapsed time: 0:03:12
+# Errors: 0, Warnings: 2
+# vsim -voptargs="+acc" work.tb_ALU 
+# Start time: 00:03:45 on Jun 04,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_ALU(fast)
+# Loading work.ALU(fast)
+run -all
+# Starting ALU testbench...
+# [AND] R1 = 10101010, R2 = 11001100 => OUT = 10001000, OVERFLOW = 00, ZF = 0
+# [XOR] R1 = 11110000, R2 = 10101010 => OUT = 01011010, OVERFLOW = 00, ZF = 0
+# [SHL] R1 = 00000011, R2 = 00000001 => OUT = 00001000, OVERFLOW = 00, ZF = 0
+# [SHR] R1 = 00000010, R2 = 10000000 => OUT = 00100000, OVERFLOW = 00, ZF = 0
+# [ADD (normal)] R1 = 00001111, R2 = 00001010 => OUT = 00011001, OVERFLOW = 00, ZF = 0
+# [ADD (overflow)] R1 = 11111111, R2 = 11111111 => OUT = 11111110, OVERFLOW = 01, ZF = 0
+# [ADD (ZF=1)] R1 = 00000000, R2 = 00000000 => OUT = 00000000, OVERFLOW = 00, ZF = 1
+# [INVALID] R1 = 10101010, R2 = 01010101 => OUT = 00000000, OVERFLOW = 00, ZF = 0
+# ALU testbench complete.

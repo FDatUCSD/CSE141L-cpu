@@ -1,0 +1,124 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Big Boss/Desktop/CPU1
+T_opt
+!s110 1749020626
+VHgfmUWRkndA7^SOG;`BmB2
+04 6 4 work tb_ALU fast 0
+=1-d843ae186bc2-683fefd2-117-93c0
+!s124 OEM10U2 
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+vALU
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1749020055
+!i10b 1
+!s100 oP9h_2X<Yb5OgV>3e^5CH2
+IhPMU[bMmQjoZ]IZ?ZSnPP3
+S1
+Z4 dC:/Users/Big Boss/Desktop/CPU1/CPU1
+w1748982189
+8C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv
+FC:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv
+!i122 0
+L0 1 30
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.2;73
+r1
+!s85 0
+31
+!s108 1749020054.000000
+!s107 C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv|
+!i113 0
+Z7 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@a@l@u
+vIF_module
+R2
+R3
+!i10b 1
+!s100 XI>TZQL6IKObXKC]kLoM63
+IXD^Z0Ud1;ai5cjCjb_eX41
+S1
+R4
+w1748985130
+8C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv
+FC:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv
+!i122 1
+L0 1 29
+R5
+R6
+r1
+!s85 0
+31
+Z8 !s108 1749020055.000000
+!s107 C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv|
+!i113 0
+R7
+R1
+n@i@f_module
+vRF
+R2
+R3
+!i10b 1
+!s100 1fbm`3NLo:@8I3=ic2<9a1
+IWY^f481]mU<BFRW<gz;MX0
+S1
+R4
+w1748984350
+8C:/Users/Big Boss/Desktop/CPU1/CPU1/RF.sv
+FC:/Users/Big Boss/Desktop/CPU1/CPU1/RF.sv
+!i122 2
+L0 1 23
+R5
+R6
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/Big Boss/Desktop/CPU1/CPU1/RF.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/Big Boss/Desktop/CPU1/CPU1/RF.sv|
+!i113 0
+R7
+R1
+n@r@f
+vtb_ALU
+R2
+!s110 1749020614
+!i10b 1
+!s100 ;1^hzW5o@5F4FkQKWc_gI3
+I`Z7fL^8PN4Ne2FcGR@<L]1
+S1
+R4
+w1749020607
+8C:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv
+FC:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv
+!i122 5
+L0 3 66
+R5
+R6
+r1
+!s85 0
+31
+!s108 1749020614.000000
+!s107 C:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|-stats=none|C:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv|
+!i113 0
+R7
+R1
+ntb_@a@l@u
