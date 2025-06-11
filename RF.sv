@@ -10,8 +10,8 @@ module RF(
 
     	// Combinational reads
 	assign val1 = registers_arr[R1];
-    	assign val2 = registers_arr[R2];
-	assign cmp = (registers_arr[R1] == registers_arr[R2]); // for early branch resolution
+	assign val2 = registers_arr[R2];
+	assign cmp = (registers_arr[R1] == 8'b0); // for early branch resolution
 
    	 // Synchronous write to R2
     	always_ff @(posedge CLK) begin
