@@ -1,12 +1,18 @@
 module IF_module(
   input Branch,
-  input [4:0] Target,
+  input [2:0] Target,
   input Init,
   input Halt,
   input CLK,
   output logic[7:0] PC
   );
+
+  logic signed [7:0] branch_offset;
 	
+	// Sign-extend the target bits and multiply by 4
+	// We can only branch to a destination that is a multiple of 4
+	assign branch_offset = {{5{Target[2]}}, Target} << 2;
+
   always @(posedge CLK)
 	if(Init)
 	  PC <= 0;
@@ -14,14 +20,7 @@ module IF_module(
 	  PC <= PC;
 	else if(Branch) begin
 	  //$display("Target = %b", Target);
-	  if(Target[4] == 1) begin
-			//$display("Branching backwards %b lines!", (~{3'b111,Target} +  1'b1));
-			PC <= PC - (~{3'b111,Target} +  1);
-	  end
-	  else begin
-			//$display("Branching forwards %d lines!", Target);
-			PC <= PC + Target;
-	  end
+		PC <= PC + branch_offset;
 	end
 	else
 	  PC <= PC+1;
