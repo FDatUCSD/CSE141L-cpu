@@ -21,7 +21,7 @@ module tb_Control;
   // Task to display results
   task print_control(string name);
     $display("[%s] instr[8:6]=%b | writeEnable=%b, OP=%b, memRead=%b, memWrite=%b, branch=%b, ALUSrc=%b, MemToReg=%b",
-             name, instruction[8:6], ctrl.writeEnable, ctrl.OP, ctrl.memRead, ctrl.memWrite, ctrl.branch, ctrl.ALUSrc, ctrl.MemToReg);
+             name, instruction[8:6], ctrl.writeEnable, ctrl.OP, ctrl.memRead, ctrl.memWrite, ctrl.branch, ctrl.MemToReg);
   endtask
 
   initial begin

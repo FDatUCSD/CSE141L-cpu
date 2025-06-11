@@ -2,7 +2,7 @@ module IF_module(
   input Branch,
   input [2:0] Target,
   input Init,
-  input Halt,
+  input Stall,
   input CLK,
   output logic[7:0] PC
   );
@@ -16,7 +16,7 @@ module IF_module(
   always @(posedge CLK)
 	if(Init)
 	  PC <= 0;
-	else if(Halt)
+	else if(Stall)
 	  PC <= PC;
 	else if(Branch) begin
 	  //$display("Target = %b", Target);
