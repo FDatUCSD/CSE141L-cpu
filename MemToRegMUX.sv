@@ -1,14 +1,14 @@
 module MemToRegMUX (
-    input  logic [7:0] alu_result,
-    input  logic [7:0] mem_data,
-    input  logic       memToReg,     // 0 = alu_result, 1 = mem_data
-    output logic [7:0] write_data
+    input  logic [7:0] aluResult,
+    input  logic [7:0] memResult,
+    input  logic       sel,     // 0 = aluResult, 1 = memResult
+    output logic [7:0] out
 );
 
     always_comb begin
-        case (memToReg)
-            1'b0: write_data = alu_result;
-            1'b1: write_data = mem_data;
+        case (sel)
+            1'b0: out = aluResult;
+            1'b1: out = memResult;
         endcase
     end
 

@@ -19,3 +19,8 @@ _info
 # Optional: ignore compiled output or logs if any
 *.log
 *.vcd
+
+# Quartus stuff
+/db/
+/incremental_db/
+/output_files/

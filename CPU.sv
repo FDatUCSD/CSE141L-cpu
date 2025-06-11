@@ -9,10 +9,10 @@ module CPU (
     // ------------------------------------------FETCH-------------------------------------------- //
     logic [7:0] pc;
     logic cmp;
-    logic branch_taken = cmp && control_ctrl_out.branch;
-    logic flush = branch_taken;
+    logic branch_taken;
+    logic flush;
     logic [8:0] ifId_instr_out;
-    logic [2:0] branch_target = ifId_instr_out[2:0];
+    logic [2:0] branch_target;
     logic [7:0] regFile_rs_val;
     logic [7:0] regFile_rd_val;
     logic [8:0] instr;
@@ -21,18 +21,18 @@ module CPU (
     ControlSignals hcMUX_ctrl_out;
     logic [7:0] write_value;
     logic stall;
-    logic [7:0] idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
+    logic [7:0] idEx_imm_in;
     ControlSignals idEx_ctrl_out;
     logic [7:0] idEx_rs_val_out, idEx_rd_val_out, idEx_imm_out;
     logic [2:0] idEx_rs_out, idEx_rd_out;
     ForwardSel forwardA_sel, forwardB_sel;
-    logic [7:0] forwardA_regval = idEx_rs_val_out;
-    logic [7:0] forwardB_regval = idEx_rd_val_out;
+    logic [7:0] forwardA_regval;
+    logic [7:0] forwardB_regval;
     logic [7:0] exMem_alu_out;
-    logic [7:0] forwardA_memval = exMem_alu_out;
-    logic [7:0] forwardB_memval = exMem_alu_out;
-    logic [7:0] forwardA_wbval = write_value;
-    logic [7:0] forwardB_wbval = write_value;
+    logic [7:0] forwardA_memval;
+    logic [7:0] forwardB_memval;
+    logic [7:0] forwardA_wbval;
+    logic [7:0] forwardB_wbval;
     logic [7:0] forwardA_out, forwardB_out;
     logic [7:0] alu_out;
     logic [1:0] alu_overflow;
@@ -44,6 +44,18 @@ module CPU (
     ControlSignals memWb_ctrl_out;
     logic [7:0] memWb_alu_out, memWb_mem_out;
     logic [2:0] memWb_rd_out;
+
+
+    assign branch_taken = (cmp && control_ctrl_out.branch);
+    assign flush = branch_taken;
+    assign branch_target = ifId_instr_out[2:0];
+    assign idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
+    assign  forwardA_regval = idEx_rs_val_out;
+    assign forwardB_regval = idEx_rd_val_out;
+    assign forwardA_memval = exMem_alu_out;
+    assign forwardB_memval = exMem_alu_out;
+    assign forwardA_wbval = write_value;
+    assign forwardB_wbval = write_value;
 
     IF_module fetch (
         .Branch(branch_taken),
@@ -63,7 +75,7 @@ module CPU (
     // === IF/ID REGISTER ===
 
     IF_ID ifIdReg(
-        .clk(clk),
+        .CLK(clk),
         .reset(reset),
         .stall(stall),
         .flush(flush),
@@ -173,13 +185,13 @@ module CPU (
         .clk(clk),
         .reset(reset),
         .control_in(idEx_ctrl_out),
-        .aluResult_in(alu_out),
-        .rdVal_in(forwardB_out),
-        .rd_in(idEx_rd_out),
+        .ALUResult_in(alu_out),
+        .RdVal_in(forwardB_out),
+        .Rd_in(idEx_rd_out),
         .control_out(exMem_ctrl_out),
-        .aluResult_out(exMem_alu_out),
-        .rdVal_out(exMem_rd_val_out),
-        .rd_out(exMem_rd_out)
+        .ALUResult_out(exMem_alu_out),
+        .RdVal_out(exMem_rd_val_out),
+        .Rd_out(exMem_rd_out)
     );
 
     // === MEMORY STAGE ===
@@ -187,7 +199,7 @@ module CPU (
         .clk(clk),
         .memWrite(exMem_ctrl_out.memWrite),
         .memRead(exMem_ctrl_out.memRead),
-        .addr(exMem_alu_out),
+        .address(exMem_alu_out),
         .writeData(exMem_rd_val_out),
         .readData(mem_data_out)
     );
@@ -198,13 +210,13 @@ module CPU (
         .clk(clk),
         .reset(reset),
         .control_in(exMem_ctrl_out),
-        .aluResult_in(exMem_alu_out),
-        .memResult_in(mem_data_out),
-        .rd_in(exMem_rd_out),
+        .ALUResult_in(exMem_alu_out),
+        .memData_in(mem_data_out),
+        .Rd_in(exMem_rd_out),
         .control_out(memWb_ctrl_out),
-        .aluResult_out(memWb_alu_out),
-        .memResult_out(memWb_mem_out),
-        .rd_out(memWb_rd_out)
+        .ALUResult_out(memWb_alu_out),
+        .memData_out(memWb_mem_out),
+        .Rd_out(memWb_rd_out)
     );
 
     // === WB STAGE ===
