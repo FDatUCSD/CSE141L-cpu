@@ -1,0 +1,18 @@
+# QuestaSim work directory
+/work/
+
+# QuestaSim project and simulation files
+*.mpf
+*.mti
+transcript
+
+# Backup files
+*.bak
+*.sv.bak
+
+# Miscellaneous
+_info
+
+# Optional: ignore compiled output or logs if any
+*.log
+*.vcd
