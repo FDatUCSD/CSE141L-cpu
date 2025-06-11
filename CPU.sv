@@ -1,5 +1,6 @@
 // Top Level CPU Module
 
+import Defs::*;
 module CPU (
     input logic clk,
     input logic reset
@@ -7,6 +8,42 @@ module CPU (
 
     // ------------------------------------------FETCH-------------------------------------------- //
     logic [7:0] pc;
+    logic cmp;
+    logic branch_taken = cmp && control_ctrl_out.branch;
+    logic flush = branch_taken;
+    logic [8:0] ifId_instr_out;
+    logic [2:0] branch_target = ifId_instr_out[2:0];
+    logic [7:0] regFile_rs_val;
+    logic [7:0] regFile_rd_val;
+    logic [8:0] instr;
+    logic [7:0] ifId_pc_out;
+    ControlSignals control_ctrl_out;
+    ControlSignals hcMUX_ctrl_out;
+    logic [7:0] write_value;
+    logic stall;
+    logic [7:0] idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
+    ControlSignals idEx_ctrl_out;
+    logic [7:0] idEx_rs_val_out, idEx_rd_val_out, idEx_imm_out;
+    logic [2:0] idEx_rs_out, idEx_rd_out;
+    ForwardSel forwardA_sel, forwardB_sel;
+    logic [7:0] forwardA_regval = idEx_rs_val_out;
+    logic [7:0] forwardB_regval = idEx_rd_val_out;
+    logic [7:0] exMem_alu_out;
+    logic [7:0] forwardA_memval = exMem_alu_out;
+    logic [7:0] forwardB_memval = exMem_alu_out;
+    logic [7:0] forwardA_wbval = write_value;
+    logic [7:0] forwardB_wbval = write_value;
+    logic [7:0] forwardA_out, forwardB_out;
+    logic [7:0] alu_out;
+    logic [1:0] alu_overflow;
+    logic alu_zf;
+    ControlSignals exMem_ctrl_out;
+    logic [7:0] exMem_rd_val_out;
+    logic [2:0] exMem_rd_out;
+    logic [7:0] mem_data_out;
+    ControlSignals memWb_ctrl_out;
+    logic [7:0] memWb_alu_out, memWb_mem_out;
+    logic [2:0] memWb_rd_out;
 
     IF_module fetch (
         .Branch(branch_taken),
@@ -17,21 +54,13 @@ module CPU (
         .PC(pc)
     );
 
-    logic [8:0] instr;
 
     InstructionMemory instructionMem(
         .address(pc),
         .instruction(instr)
     );
 
-    // Placeholder wires for connecting modules
-    // Declare wires for IF/ID outputs, ID/EX inputs, EX/MEM, MEM/WB, etc.
-    // Declare all ControlSignals structs needed
-
     // === IF/ID REGISTER ===
-    // TODO: Instantiate and wire up IF/ID register here
-    logic [7:0] ifId_pc_out;
-    logic [8:0] ifId_instr_out;
 
     IF_ID ifIdReg(
         .clk(clk),
@@ -46,9 +75,6 @@ module CPU (
 
     // ---------------------------------------DECODE--------------------------------------//
 
-    // === CONTROL UNIT ===
-    // TODO: Instantiate Control and HazardControlMUX
-    ControlSignals control_ctrl_out;
 
     Control control(
         .init(reset),
@@ -56,7 +82,6 @@ module CPU (
         .ctrl(control_ctrl_out)
     );
 
-    ControlSignals hcMUX_ctrl_out;
 
     HazardControlMUX hcMUX(
         .control_in(control_ctrl_out),
@@ -64,31 +89,19 @@ module CPU (
         .control_out(hcMUX_ctrl_out)
     );
 
-    // === REGISTER FILE ===
-    // TODO: Instantiate RF
-    logic [7:0] regFile_rs_val;
-    logic [7:0] regFile_rd_val;
-    logic cmp;
+
 
     RF regFile(
         .CLK(clk),
-        .regWrite(memWb_ctrl_out.regWrite), // TODO: wire this
+        .regWrite(memWb_ctrl_out.regWrite),
         .Rs(ifId_instr_out[5:3]),
         .Rd(ifId_instr_out[2:0]),
-        .writeValue(write_value), // TODO: wire this
+        .writeValue(write_value),
         .RsVal(regFile_rs_val),
         .RdVal(regFile_rd_val),
         .cmp(cmp)
     );
 
-    logic branch_taken = cmp && control_ctrl_out.branch;
-    logic flush = branch_taken;
-    logic [2:0] branch_target = ifId_instr_out[2:0];
-
-
-    // === HAZARD UNIT ===
-    // TODO: Instantiate HazardUnit
-    logic stall;
     HazardUnit hazardUnit(
         .ID_EX_MemRead(idEx_ctrl_out.memRead),
         .IF_ID_Rs(ifId_instr_out[5:3]),
@@ -97,12 +110,6 @@ module CPU (
         .stall(stall)
     );
 
-    // === ID/EX REGISTER ===
-    // TODO: Instantiate ID/EX pipeline register
-    logic [7:0] idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
-    ControlSignals idEx_ctrl_out;
-    logic [7:0] idEx_rs_val_out, idEx_rd_val_out, idEx_imm_out;
-    logic [2:0] idEx_rs_out, idEx_rd_out;
 
     ID_EX idExReg(
         .clk(clk),
@@ -122,10 +129,18 @@ module CPU (
     );
 
     // === FORWARDING UNIT ===
-    // TODO: Instantiate ForwardingUnit
+    ForwardingUnit fwdUnit(
+        .EX_Rs(idEx_rs_out),
+        .EX_Rd(idEx_rd_out),
+        .MEM_Rd(exMem_rd_out),
+        .WB_Rd(memWb_rd_out),
+        .MEM_RegWrite(exMem_ctrl_out.regWrite),
+        .WB_RegWrite(memWb_ctrl_out.regWrite),
+        .ForwardA(forwardA_sel),
+        .ForwardB(forwardB_sel)
+    );
 
-    // === EX STAGE ===
-    // TODO: Instantiate ALU and operand selection logic
+
     ForwardingMUX forwardA(
         .regVal(forwardA_regval),
         .memVal(forwardA_memval),
@@ -133,7 +148,7 @@ module CPU (
         .forwardSel(forwardA_sel),
         .operandOut(forwardA_out)
     );
-    
+
     ForwardingMUX forwardB(
         .regVal(forwardB_regval),
         .memVal(forwardB_memval),
@@ -141,10 +156,7 @@ module CPU (
         .forwardSel(forwardB_sel),
         .operandOut(forwardB_out)
     );
-    
-    logic [7:0] alu_out;
-    logic [1:0] alu_overflow;
-    logic alu_zf;
+
 
     ALU alu(
         .OP(idEx_ctrl_out.OP),
@@ -156,15 +168,51 @@ module CPU (
     );
 
     // === EX/MEM REGISTER ===
-    // TODO: Instantiate EX/MEM pipeline register
+
+    EX_MEM exMemReg(
+        .clk(clk),
+        .reset(reset),
+        .control_in(idEx_ctrl_out),
+        .aluResult_in(alu_out),
+        .rdVal_in(forwardB_out),
+        .rd_in(idEx_rd_out),
+        .control_out(exMem_ctrl_out),
+        .aluResult_out(exMem_alu_out),
+        .rdVal_out(exMem_rd_val_out),
+        .rd_out(exMem_rd_out)
+    );
 
     // === MEMORY STAGE ===
-    // TODO: Instantiate data memory
+    DataMemory dataMem(
+        .clk(clk),
+        .memWrite(exMem_ctrl_out.memWrite),
+        .memRead(exMem_ctrl_out.memRead),
+        .addr(exMem_alu_out),
+        .writeData(exMem_rd_val_out),
+        .readData(mem_data_out)
+    );
 
     // === MEM/WB REGISTER ===
-    // TODO: Instantiate MEM/WB pipeline register
+
+    MEM_WB memWbReg(
+        .clk(clk),
+        .reset(reset),
+        .control_in(exMem_ctrl_out),
+        .aluResult_in(exMem_alu_out),
+        .memResult_in(mem_data_out),
+        .rd_in(exMem_rd_out),
+        .control_out(memWb_ctrl_out),
+        .aluResult_out(memWb_alu_out),
+        .memResult_out(memWb_mem_out),
+        .rd_out(memWb_rd_out)
+    );
 
     // === WB STAGE ===
-    // TODO: Instantiate MemToRegMUX and connect to Register File write-back
+    MemToRegMUX memToRegMux(
+        .aluResult(memWb_alu_out),
+        .memResult(memWb_mem_out),
+        .sel(memWb_ctrl_out.MemToReg),
+        .out(write_value)
+    );
 
 endmodule
