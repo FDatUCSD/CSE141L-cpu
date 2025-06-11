@@ -33,7 +33,7 @@ module Control(
 		end else begin
 
 			opcode_t decoded_op;
-			decoded_op = instruction[8:6];
+			decoded_op = opcode_t'(instruction[8:6]);
 			OP = decoded_op;
 
 			case(OP)
