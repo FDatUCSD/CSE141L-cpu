@@ -1,37 +1,27 @@
 `timescale 1ns/1ps
 
+import Defs::*;  // Contains the typedef for ControlSignals
+
 module tb_Control;
 
   // Inputs
   logic init;
   logic [8:0] instruction;
 
-  // Outputs
-  logic writeEnable;
-  logic [2:0] OP;
-  logic memRead;
-  logic memWrite;
-  logic branch;
-  logic ALUSrc;
-  logic MemToReg;
+  // Output
+  ControlSignals ctrl;
 
   // Instantiate the Control module
   Control dut (
     .init(init),
     .instruction(instruction),
-    .writeEnable(writeEnable),
-    .OP(OP),
-    .memRead(memRead),
-    .memWrite(memWrite),
-    .branch(branch),
-    .ALUSrc(ALUSrc),
-    .MemToReg(MemToReg)
+    .ctrl(ctrl)
   );
 
   // Task to display results
   task print_control(string name);
     $display("[%s] instr[8:6]=%b | writeEnable=%b, OP=%b, memRead=%b, memWrite=%b, branch=%b, ALUSrc=%b, MemToReg=%b",
-             name, instruction[8:6], writeEnable, OP, memRead, memWrite, branch, ALUSrc, MemToReg);
+             name, instruction[8:6], ctrl.writeEnable, ctrl.OP, ctrl.memRead, ctrl.memWrite, ctrl.branch, ctrl.ALUSrc, ctrl.MemToReg);
   endtask
 
   initial begin
@@ -58,7 +48,6 @@ module tb_Control;
     instruction = 9'bzzz_000_000; #1; print_control("DEFAULT (unknown)");
 
     $display("=== Test Complete ===");
-
   end
 
 endmodule
