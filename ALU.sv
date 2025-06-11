@@ -1,14 +1,13 @@
 module ALU(
-	input [2:0] OP,
-	input [7:0] R1,
-	input [7:0] R2,
+	input logic [2:0] OP,
+	input logic [7:0] R1,
+	input logic [7:0] R2,
 	output logic [7:0] OUT,
 	output logic [1:0] OVERFLOW,
 	output logic ZF);
 
 	always_comb begin
 		
-		static logic [7:0] cmp_value = 0;
 		OVERFLOW = 0;
 		ZF = 0;
 
