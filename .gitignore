@@ -1,6 +1,9 @@
 # QuestaSim work directory
 /work/
 
+# VSCode directory
+/.vscode/
+
 # QuestaSim project and simulation files
 *.mpf
 *.mti
