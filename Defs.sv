@@ -5,7 +5,6 @@ package Defs;
         logic memRead;
         logic memWrite;
         logic branch;
-        logic ALUSrc;
         logic MemToReg;
         logic [2:0] OP;
     } ControlSignals;

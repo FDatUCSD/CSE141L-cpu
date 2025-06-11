@@ -22,19 +22,19 @@ module Control(
             case (op)
                 AND_OP, XOR_OP, SHL_OP, SHR_OP, ADD_OP: ctrl = '{
                     writeEnable: 1, memRead: 0, memWrite: 0, branch: 0,
-                    ALUSrc: 0, MemToReg: 0, OP: op
+                    MemToReg: 0, OP: op
                 };
                 LW_OP: ctrl = '{
                     writeEnable: 1, memRead: 1, memWrite: 0, branch: 0,
-                    ALUSrc: 1, MemToReg: 1, OP: op
+                    MemToReg: 1, OP: op
                 };
                 SW_OP: ctrl = '{
                     writeEnable: 0, memRead: 0, memWrite: 1, branch: 0,
-                    ALUSrc: 1, MemToReg: 0, OP: op
+                    MemToReg: 0, OP: op
                 };
                 BR_OP: ctrl = '{
                     writeEnable: 0, memRead: 0, memWrite: 0, branch: 1,
-                    ALUSrc: 0, MemToReg: 0, OP: op
+                    MemToReg: 0, OP: op
                 };
                 default: ctrl = '{default: 0, OP: op};
             endcase
