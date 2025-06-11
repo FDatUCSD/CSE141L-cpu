@@ -47,3 +47,6 @@ run -all
 # [ADD (ZF=1)] R1 = 00000000, R2 = 00000000 => OUT = 00000000, OVERFLOW = 00, ZF = 1
 # [INVALID] R1 = 10101010, R2 = 01010101 => OUT = 00000000, OVERFLOW = 00, ZF = 0
 # ALU testbench complete.
+# Compile of Control.sv was successful.
+# End time: 00:19:33 on Jun 04,2025, Elapsed time: 0:15:48
+# Errors: 0, Warnings: 2

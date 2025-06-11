@@ -1,4 +1,11 @@
-{C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv}
+{C:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/tb_ALU.sv}
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module tb_ALU
+
+Top level modules:
+	tb_ALU
+
+} {} {}} {C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/IF.sv}
 Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
 -- Compiling module IF_module
 
@@ -12,12 +19,14 @@ Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
 Top level modules:
 	RF
 
-} {} {}} {C:/Users/Big Boss/Desktop/CPU1/CPU1/Control.sv} {0 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/Control.sv}
+} {} {}} {C:/Users/Big Boss/Desktop/CPU1/CPU1/Control.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/Control.sv}
 Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
 -- Compiling module Control
-** Error: (vlog-13069) C:/Users/Big Boss/Desktop/CPU1/CPU1/Control.sv(57): near "endmodule": syntax error, unexpected endmodule.
 
-} {4.0 5.0} {}} {C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv}
+Top level modules:
+	Control
+
+} {} {}} {C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv} {1 {vlog -work work -vopt -sv -stats=none {C:/Users/Big Boss/Desktop/CPU1/CPU1/ALU.sv}
 Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
 -- Compiling module ALU
 
