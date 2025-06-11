@@ -1,26 +1,38 @@
+import Defs::*;
+
 module ForwardingUnit (
     input logic [2:0] EX_Rs, EX_Rd,
     input logic [2:0] MEM_Rd, WB_Rd,
     input logic       MEM_RegWrite, WB_RegWrite,
-    output logic [1:0] ForwardA, ForwardB
+    output ForwardSel ForwardA, ForwardB
 );
 
     always_comb begin
-        // Default to no forwarding
-        ForwardA = 2'b00;
-        ForwardB = 2'b00;
+        // ForwardA logic
+        if (MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rs)) begin
+            ForwardA = FORWARD_MEM;
+        end
+        else if (WB_RegWrite && (WB_Rd != 0) &&
+                !(MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rs)) &&
+                (WB_Rd == EX_Rs)) begin
+            ForwardA = FORWARD_WB;
+        end
+        else begin
+            ForwardA = FORWARD_NONE;
+        end
 
-        // ForwardA logic (EX_Rs)
-        if (MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rs))
-            ForwardA = 2'b10; // Forward from EX/MEM
-        else if (WB_RegWrite && (WB_Rd != 0) && (WB_Rd == EX_Rs))
-            ForwardA = 2'b01; // Forward from MEM/WB
-
-        // ForwardB logic (EX_Rd)
-        if (MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rd))
-            ForwardB = 2'b10; // Forward from EX/MEM
-        else if (WB_RegWrite && (WB_Rd != 0) && (WB_Rd == EX_Rd))
-            ForwardB = 2'b01; // Forward from MEM/WB
+        // ForwardB logic
+        if (MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rd)) begin
+            ForwardB = FORWARD_MEM;
+        end
+        else if (WB_RegWrite && (WB_Rd != 0) &&
+                !(MEM_RegWrite && (MEM_Rd != 0) && (MEM_Rd == EX_Rd)) &&
+                (WB_Rd == EX_Rd)) begin
+            ForwardB = FORWARD_WB;
+        end
+        else begin
+            ForwardB = FORWARD_NONE;
+        end
     end
 
 endmodule
