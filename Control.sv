@@ -7,17 +7,6 @@ module Control(
 	);
 
 
-	typedef enum logic [2:0] {
-		AND_OP  = 3'b000,
-		XOR_OP  = 3'b001,
-		SHL_OP  = 3'b010,
-		SHR_OP  = 3'b011,
-		ADD_OP  = 3'b100,
-		LW_OP   = 3'b101,
-		SW_OP   = 3'b110,
-		BR_OP   = 3'b111
-	} opcode_t;
-
     opcode_t op;
     always_comb begin
         op = opcode_t'(instruction[8:6]);
