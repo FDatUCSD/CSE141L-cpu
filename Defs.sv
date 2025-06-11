@@ -1,7 +1,7 @@
 package Defs;
 
     typedef struct packed {
-        logic writeEnable;
+        logic regWrite;
         logic memRead;
         logic memWrite;
         logic branch;
