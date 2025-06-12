@@ -1,3 +1,0 @@
-module Control(
-	input [8:0] instruction;
-	
