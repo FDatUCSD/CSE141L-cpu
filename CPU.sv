@@ -45,18 +45,25 @@ module CPU (
     logic [7:0] memWb_alu_out, memWb_mem_out;
     logic [2:0] memWb_rd_out;
     logic [7:0] exMem_imm_out;
+    ForwardSel forwardBranch_sel;
+    logic [7:0] forwardBranch_regval, forwardBranch_memval, forwardBranch_wbval;
+    logic [7:0] forwardBranch_out;
 
 
+    assign cmp = (forwardBranch_out == 8'b0);
     assign branch_taken = (cmp && control_ctrl_out.branch);
     assign flush = branch_taken;
     assign branch_target = ifId_instr_out[2:0];
     assign idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
-    assign  forwardA_regval = idEx_rs_val_out;
+    assign forwardA_regval = idEx_rs_val_out;
     assign forwardB_regval = idEx_rd_val_out;
     assign forwardA_memval = exMem_alu_out;
     assign forwardB_memval = exMem_alu_out;
     assign forwardA_wbval = write_value;
     assign forwardB_wbval = write_value;
+    assign forwardBranch_regval = regFile_rs_val;
+    assign forwardBranch_memval = exMem_alu_out;
+    assign forwardBranch_wbval = write_value;
 
     IF_module fetch (
         .Branch(branch_taken),
@@ -112,7 +119,6 @@ module CPU (
         .writeValue(write_value),
         .RsVal(regFile_rs_val),
         .RdVal(regFile_rd_val),
-        .cmp(cmp),
         .writeAddr(memWb_rd_out),
         .reset(reset)
     );
@@ -149,10 +155,12 @@ module CPU (
         .EX_Rd(idEx_rd_out),
         .MEM_Rd(exMem_rd_out),
         .WB_Rd(memWb_rd_out),
+        .Branch_Rs(ifId_instr_out[5:3]),
         .MEM_RegWrite(exMem_ctrl_out.regWrite),
         .WB_RegWrite(memWb_ctrl_out.regWrite),
         .ForwardA(forwardA_sel),
-        .ForwardB(forwardB_sel)
+        .ForwardB(forwardB_sel),
+        .ForwardBranch(forwardBranch_sel)
     );
 
 
@@ -170,6 +178,14 @@ module CPU (
         .wbVal(forwardB_wbval),
         .forwardSel(forwardB_sel),
         .operandOut(forwardB_out)
+    );
+
+    ForwardingMUX branchMux(
+        .regVal(forwardBranch_regval),
+        .memVal(forwardBranch_memval),
+        .wbVal(forwardBranch_wbval),
+        .forwardSel(forwardBranch_sel),
+        .operandOut(forwardBranch_out)
     );
 
 

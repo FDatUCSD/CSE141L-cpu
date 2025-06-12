@@ -19,7 +19,7 @@ module IF_module(
 	else if(Stall)
 	  PC <= PC;
 	else if(Branch) begin
-	  //$display("Target = %b", Target);
+	  $display("Target = %b, branching to %b", Target, (PC + branch_offset));
 		PC <= PC + branch_offset;
 	end
 	else

@@ -28,6 +28,7 @@ module tb_CPU;
     
     dut.dataMem.memory[0] = 8'd2;
     dut.regFile.registers_arr[1] = 8'd3;
+    dut.regFile.registers_arr[7] = 8'hff; // -1
 
     // Wait 1 cycle before starting monitor
   end
@@ -35,16 +36,12 @@ module tb_CPU;
     // Periodic monitoring block (every 10ns)
   always @(posedge clk) begin
     // Print a few example registers and memory locations
-    $display("[Time %0t] PC = %0d | RF[1] = %0d | RF[2] = %0d | MEM[0] = %0d | MEM[1] = %0d | MEM[2] = %0d | ALURes = %0d | ALUOp = %d | ALUR1 = %d | ALUR2 = %d | ForwardA_out = %0d | ForwardA_sel = %0d | ForwardB_out = %0d | ForwardB_sel = %0d | Stall = %0d | RFWrite = %d | RFWrite_data = %d | DataMem_out = %d | IDEX_RDVal = %d | RFRdVal = %d | RFRsVal = %d", 
+    $display("[Time %0t] PC = %0d | RF[1] = %0d | MEM[0] = %0d | ALURes = %0d | ALUR1 = %d | ALUR2 = %d | ForwardA_out = %0d | ForwardA_sel = %0d | ForwardB_out = %0d | ForwardB_sel = %0d | Stall = %0d | RFWrite = %d | RFWrite_data = %d | ForwardBranch_out = %d | ForwardBranch_sel = %d | ForwardBranch_fromMem = %d | Branching = %d", 
              $time,
              dut.fetch.PC,
              dut.regFile.registers_arr[1],
-             dut.regFile.registers_arr[2],
              dut.dataMem.memory[0],
-             dut.dataMem.memory[1],
-             dut.dataMem.memory[2],
              dut.alu.OUT,
-             dut.alu.OP,
              dut.alu.R1,
              dut.alu.R2,
              dut.forwardA.operandOut,
@@ -54,10 +51,10 @@ module tb_CPU;
              dut.hazardUnit.stall,
              dut.regFile.regWrite,
              dut.regFile.writeValue,
-             dut.dataMem.readData,
-             dut.idExReg.RdVal_in,
-             dut.regFile.RdVal,
-             dut.regFile.RsVal);
+             dut.branchMux.operandOut,
+             dut.branchMux.forwardSel,
+             dut.branchMux.memVal,
+             dut.fetch.Branch);
   end
 
   initial begin
