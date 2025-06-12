@@ -1,5 +1,5 @@
 # QuestaSim work directory
-/work/
+/work/*
 
 # VSCode directory
 /.vscode/
@@ -8,6 +8,13 @@
 *.mpf
 *.mti
 transcript
+*.qpf
+*.qsf
+*.qdb
+*.qtl
+*.wlf
+*.vstf
+
 
 # Backup files
 *.bak
