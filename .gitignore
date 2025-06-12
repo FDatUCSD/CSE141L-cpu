@@ -15,6 +15,9 @@ transcript
 *.wlf
 *.vstf
 
+*.exe
+*.pdb
+
 
 # Backup files
 *.bak
