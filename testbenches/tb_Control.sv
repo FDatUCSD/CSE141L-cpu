@@ -20,7 +20,7 @@ module tb_Control;
 
   // Task to display results
   task print_control(string name);
-    $display("[%s] instr[8:6]=%b | regWrite=%b, OP=%b, memRead=%b, memWrite=%b, branch=%b, ALUSrc=%b, MemToReg=%b",
+    $display("[%s] instr[8:6]=%b | regWrite=%b, OP=%b, memRead=%b, memWrite=%b, branch=%b, MemToReg=%b",
              name, instruction[8:6], ctrl.regWrite, ctrl.OP, ctrl.memRead, ctrl.memWrite, ctrl.branch, ctrl.MemToReg);
   endtask
 

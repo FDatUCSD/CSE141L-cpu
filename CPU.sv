@@ -44,6 +44,7 @@ module CPU (
     ControlSignals memWb_ctrl_out;
     logic [7:0] memWb_alu_out, memWb_mem_out;
     logic [2:0] memWb_rd_out;
+    logic [7:0] exMem_imm_out;
 
 
     assign branch_taken = (cmp && control_ctrl_out.branch);
@@ -111,7 +112,9 @@ module CPU (
         .writeValue(write_value),
         .RsVal(regFile_rs_val),
         .RdVal(regFile_rd_val),
-        .cmp(cmp)
+        .cmp(cmp),
+        .writeAddr(memWb_rd_out),
+        .reset(reset)
     );
 
     HazardUnit hazardUnit(
@@ -188,20 +191,22 @@ module CPU (
         .ALUResult_in(alu_out),
         .RdVal_in(forwardB_out),
         .Rd_in(idEx_rd_out),
+        .ImmVal_in(idEx_imm_out),
         .control_out(exMem_ctrl_out),
         .ALUResult_out(exMem_alu_out),
         .RdVal_out(exMem_rd_val_out),
-        .Rd_out(exMem_rd_out)
+        .Rd_out(exMem_rd_out),
+        .ImmVal_out(exMem_imm_out)
     );
 
     // === MEMORY STAGE ===
     DataMemory dataMem(
         .clk(clk),
-        .memWrite(exMem_ctrl_out.memWrite),
-        .memRead(exMem_ctrl_out.memRead),
-        .address(exMem_alu_out),
-        .writeData(exMem_rd_val_out),
-        .readData(mem_data_out)
+        .memWrite(exMem_ctrl_out.memWrite), // should write or not
+        .memRead(exMem_ctrl_out.memRead), // should read or not
+        .address(exMem_imm_out), // address to read or write to
+        .writeData(exMem_rd_val_out), // the data to write
+        .readData(mem_data_out) // the output
     );
 
     // === MEM/WB REGISTER ===

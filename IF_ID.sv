@@ -23,6 +23,9 @@ module IF_ID (
             instr_out <= instr_in;
         end
         // If stalled, hold current outputs
+
+        // Debug prints
+        $display("[IF/ID] instruction_in: %b", instr_in);
     end
 
 endmodule
