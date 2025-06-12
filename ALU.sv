@@ -15,7 +15,7 @@ module ALU(
 
 		3'b000: OUT = R1 & R2; // and r1 r2
 		3'b001: OUT = R1 ^ R2; // xor r1 r2
-		3'b010: OUT = R2 << R1; // shl r1 r2
+		3'b010: OUT = {R2[6:0],R1[7]}; // shl r1 r2
 		3'b011: OUT = R2 >> R1; // shr r1 r2
 
 		3'b100: begin
