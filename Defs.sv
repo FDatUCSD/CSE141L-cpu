@@ -7,6 +7,8 @@ package Defs;
         logic branch;
         logic MemToReg;
         logic [2:0] OP;
+        logic incrementPage;
+        logic decrementPage;
     } ControlSignals;
 
     typedef enum logic [1:0] {

@@ -55,6 +55,7 @@ module TopLevel (
     logic halt_detected;
     logic [1:0] exp_error_detected;
     logic alu_exp_error;
+    logic [2:0] pageBase;
 
     assign cmp = (forwardBranch_out == 8'b0);
     assign branch_taken = (cmp && control_ctrl_out.branch);
@@ -85,7 +86,6 @@ module TopLevel (
             done <= 1;
         end
     end
-
 
 
     IF_module fetch (
@@ -266,11 +266,20 @@ module TopLevel (
         .wb_data(write_value),
         .data_out(forwardMem_out)
     );
+
+    PageRegister pageRegister(
+        .clk(clk),
+        .reset(reset),
+        .increment(exMem_ctrl_out.incrementPage), // Increment page if needed
+        .decrement(exMem_ctrl_out.decrementPage), // Decrement page if needed
+        .mem_page(pageBase) // Output the current memory page
+    );
+
     DataMemory data_mem1(
         .clk(clk),
         .memWrite(exMem_ctrl_out.memWrite), // should write or not
         .memRead(exMem_ctrl_out.memRead), // should read or not
-        .address(exMem_imm_out), // address to read or write to
+        .address(exMem_imm_out + (pageBase << 3)), // address to read or write to
         .writeData(forwardMem_out), // the data to write
         .readData(mem_data_out) // the output
     );
