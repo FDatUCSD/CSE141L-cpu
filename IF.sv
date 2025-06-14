@@ -12,7 +12,7 @@ module IF_module(
 	
 	// Sign-extend the target bits and multiply by 4
 	// We can only branch to a destination that is a multiple of 4
-	assign branch_target = Target << 4;
+	assign branch_target = Target << 5;
 
   always @(posedge CLK)
 	if(Init) begin
