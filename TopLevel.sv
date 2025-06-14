@@ -9,7 +9,7 @@ module TopLevel (
 );
 
     // ------------------------------------------FETCH-------------------------------------------- //
-    logic [7:0] pc;
+    logic [9:0] pc;
     logic cmp;
     logic branch_taken;
     logic flush;
@@ -18,7 +18,7 @@ module TopLevel (
     logic [7:0] regFile_rs_val;
     logic [7:0] regFile_rd_val;
     logic [8:0] instr;
-    logic [7:0] ifId_pc_out;
+    logic [9:0] ifId_pc_out;
     ControlSignals control_ctrl_out;
     ControlSignals hcMUX_ctrl_out;
     logic [7:0] write_value;
@@ -53,10 +53,12 @@ module TopLevel (
     logic forwardMem_sel;
     logic [1:0] halt_delay_counter;
     logic halt_detected;
+    logic [1:0] exp_error_detected;
+    logic alu_exp_error;
 
     assign cmp = (forwardBranch_out == 8'b0);
     assign branch_taken = (cmp && control_ctrl_out.branch);
-    assign flush = branch_taken;
+    assign flush = exp_error_detected || branch_taken;
     assign branch_target = ifId_instr_out[2:0];
     assign idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
     assign forwardA_regval = idEx_rs_val_out;
@@ -93,7 +95,8 @@ module TopLevel (
         .Stall(stall),
         .CLK(clk),
         .PC(pc),
-        .done(done)
+        .done(done),
+        .exp_error(exp_error_detected)
     );
 
 
@@ -128,6 +131,15 @@ module TopLevel (
         .init(reset),
         .instruction(ifId_instr_out),
         .ctrl(control_ctrl_out)
+    );
+
+    ExceptionDetector exceptionDetector(
+        .opcode(idEx_ctrl_out.OP),
+        .rs(idEx_rs_out),
+        .rd(idEx_rd_out),
+        .exp_error_in(exMem_exp_error_out),
+        .rsVal(regFile_rs_val),
+        .exception_detected(exp_error_detected)
     );
 
 
@@ -224,7 +236,8 @@ module TopLevel (
         .R2(forwardB_out),
         .OUT(alu_out),
         .OVERFLOW(alu_overflow),
-        .ZF(alu_zf)
+        .ZF(alu_zf),
+        .exp_error(alu_exp_error)
     );
 
     // === EX/MEM REGISTER ===
@@ -241,7 +254,9 @@ module TopLevel (
         .ALUResult_out(exMem_alu_out),
         .RdVal_out(exMem_rd_val_out),
         .Rd_out(exMem_rd_out),
-        .ImmVal_out(exMem_imm_out)
+        .ImmVal_out(exMem_imm_out),
+        .exp_error_in(alu_exp_error),
+        .exp_error_out(exMem_exp_error_out)
     );
 
     // === MEMORY STAGE ===

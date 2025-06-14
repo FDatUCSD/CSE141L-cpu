@@ -5,10 +5,11 @@ module IF_module(
   input Stall,
   input done,
   input CLK,
-  output logic[7:0] PC
+  input logic [1:0] exp_error,
+  output logic[9:0] PC
   );
 
-  logic signed [7:0] branch_target;
+  logic signed [9:0] branch_target;
 	
 	// Sign-extend the target bits and multiply by 4
 	// We can only branch to a destination that is a multiple of 4
@@ -25,12 +26,20 @@ module IF_module(
 	end
 	else if(Stall)
 	  PC <= PC;
+	else if (exp_error != 2'b00) begin
+	  $display("Exception exp_error detected, branching PC at %d", PC);
+	  case (exp_error)
+	    2'b01: PC <= 256; // Return 0x7FFF
+		2'b10: PC <= 288; // Return 0x8000
+		default: PC <= PC; // No change for other cases
+	  endcase
+	end
 	else if(Branch) begin
 	//   $display("Target = %d", branch_target);
 		PC <= branch_target;
 	end
 	else begin
-		$display("Incrementing PC: %d, %t", PC, $time);
+		// $display("Incrementing PC: %d, %t", PC, $time);
 	  PC <= PC+1;
 	end
 

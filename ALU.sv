@@ -4,11 +4,12 @@ module ALU(
 	input logic [7:0] R2,
 	output logic [7:0] OUT,
 	output logic [1:0] OVERFLOW,
-	output logic ZF
+	output logic ZF,
+	output logic exp_error
 	);
 
 	always_comb begin
-		
+
 		OVERFLOW = 0;
 		ZF = 0;
 
@@ -30,5 +31,14 @@ module ALU(
 
 		default: OUT = 8'b0;
 		endcase
+
+		if (R1 == 22 && OUT[7] == 1 && OP == 3'b100) begin
+			$display("Exception: R1 is 22 and OUT is negative, setting exp_error");
+			$display("R1: %d, R2: %d, OP: %b, OUT: %d", R1, R2, OP, OUT);
+			exp_error = 1'b1; // Set exception error if R1 is 22 and OUT is negative
+		end else begin
+			exp_error = 1'b0; // Clear exception error otherwise
+		end
+		
 	end
 endmodule

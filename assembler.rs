@@ -45,11 +45,9 @@ fn assemble_line(
         }
         let rs = reg_to_bin(tokens[1])?;
         let label = tokens[2];
-        let block_index = *label_to_block.get(label)?;
-        // println!("Branch instruction detected: {}", tokens[2]);
+        let block_index = *label_to_block.get(label)?; // label must exist
         let block_bin = format!("{:03b}", block_index & 0x7);
-        return Some(format!("{:09b}", u16::from_str_radix(&format!("{}{}{}", opcode, rs, block_bin), 2).unwrap()))
-
+        return Some(format!("{:09b}", u16::from_str_radix(&format!("{}{}{}", opcode, rs, block_bin), 2).unwrap()));
     }
 
     if tokens.len() != 3 {
@@ -97,18 +95,42 @@ fn main() {
     let mut pc = 0;
 
     for line in &raw_lines {
-        if line.ends_with(":") {
-            let label = line.trim_end_matches(":").to_string();
+        if line.trim() == "exp_error0:" {
+            // Pad with NOPs until PC = 256
+            while pc < 256 {
+                instr_lines.push("nop".to_string());
+                pc += 1;
+            }
+        }
+
+        if line.trim() == "exp_error1:" {
+            // Pad with NOPs until PC = 288
+            while pc < 288 {
+                instr_lines.push("nop".to_string());
+                pc += 1;
+            }
+        }
+
+    if line.ends_with(":") {
+        let label = line.trim_end_matches(":").to_string();
+        if label == "exp_error0" {
+            label_to_block.insert(label.clone(), 256 / BLOCK_SIZE);
+        } else if label == "exp_error1" {
+            label_to_block.insert(label.clone(), 288 / BLOCK_SIZE);
+        } else {
+            // Align to start of next 32-byte block
             let block_start = ((pc + BLOCK_SIZE - 1) / BLOCK_SIZE) * BLOCK_SIZE;
             while pc < block_start {
                 instr_lines.push("nop".to_string());
                 pc += 1;
             }
-            label_to_block.insert(label, pc / BLOCK_SIZE);
-        } else {
-            instr_lines.push(line.clone());
-            pc += 1;
+            label_to_block.insert(label.clone(), pc / BLOCK_SIZE);
         }
+    } else {
+        instr_lines.push(line.clone());
+        pc += 1;
+}
+
     }
 
     let mut output = File::create(&args[2]).expect("Failed to create output file");
@@ -116,7 +138,6 @@ fn main() {
         if let Some(binary) = assemble_line(line, &opcode_map, &label_to_block) {
             writeln!(output, "{}", binary).expect("Failed to write line");
         } else {
-            // print cause of failure
             eprintln!("Skipping invalid or malformed line: {}", line);
         }
     }
