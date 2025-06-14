@@ -1,9 +1,11 @@
 // Top Level CPU Module
 
 import Defs::*;
-module CPU (
+module TopLevel (
     input logic clk,
-    input logic reset
+    input logic reset,
+    input logic start,
+    output logic done
 );
 
     // ------------------------------------------FETCH-------------------------------------------- //
@@ -47,8 +49,10 @@ module CPU (
     logic [7:0] exMem_imm_out;
     ForwardSel forwardBranch_sel;
     logic [7:0] forwardBranch_regval, forwardBranch_memval, forwardBranch_wbval;
-    logic [7:0] forwardBranch_out;
-
+    logic [7:0] forwardBranch_out, forwardMem_out;
+    logic forwardMem_sel;
+    logic [1:0] halt_delay_counter;
+    logic halt_detected;
 
     assign cmp = (forwardBranch_out == 8'b0);
     assign branch_taken = (cmp && control_ctrl_out.branch);
@@ -65,13 +69,31 @@ module CPU (
     assign forwardBranch_memval = exMem_alu_out;
     assign forwardBranch_wbval = write_value;
 
+    // always_ff @(posedge clk or posedge reset) begin
+    //     if (reset) 
+    //         done <= 1'b0;
+    //     else if (halt_detected)
+    //         done <= 1'b1;
+    // end
+
+    always_latch begin
+        if (reset || start) begin
+            done <= 0;
+        end else if (ifId_instr_out == 9'b111000000) begin
+            done <= 1;
+        end
+    end
+
+
+
     IF_module fetch (
         .Branch(branch_taken),
         .Target(branch_target),
         .Init(reset),
         .Stall(stall),
         .CLK(clk),
-        .PC(pc)
+        .PC(pc),
+        .done(done)
     );
 
 
@@ -94,6 +116,12 @@ module CPU (
     );
 
     // ---------------------------------------DECODE--------------------------------------//
+
+    // === HALT DETECTOR ===
+    // HaltDetector haltDetector(
+    //     .instr_in(ifId_instr_out),
+    //     .halt_detected(halt_detected)
+    // );
 
 
     Control control(
@@ -160,7 +188,8 @@ module CPU (
         .WB_RegWrite(memWb_ctrl_out.regWrite),
         .ForwardA(forwardA_sel),
         .ForwardB(forwardB_sel),
-        .ForwardBranch(forwardBranch_sel)
+        .ForwardBranch(forwardBranch_sel),
+        .ForwardMem(forwardMem_sel)
     );
 
 
@@ -195,7 +224,7 @@ module CPU (
         .R2(forwardB_out),
         .OUT(alu_out),
         .OVERFLOW(alu_overflow),
-        .ZF(alu_zf)
+        .ZF(alu_zf),
     );
 
     // === EX/MEM REGISTER ===
@@ -216,12 +245,18 @@ module CPU (
     );
 
     // === MEMORY STAGE ===
-    DataMemory dataMem(
+    DataMemMUX dataMemMux(
+        .sel(forwardMem_sel),
+        .exMem_data(exMem_rd_val_out),
+        .wb_data(write_value),
+        .data_out(forwardMem_out)
+    );
+    DataMemory data_mem1(
         .clk(clk),
         .memWrite(exMem_ctrl_out.memWrite), // should write or not
         .memRead(exMem_ctrl_out.memRead), // should read or not
         .address(exMem_imm_out), // address to read or write to
-        .writeData(exMem_rd_val_out), // the data to write
+        .writeData(forwardMem_out), // the data to write
         .readData(mem_data_out) // the output
     );
 

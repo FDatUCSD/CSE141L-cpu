@@ -5,7 +5,8 @@ module ForwardingUnit (
     input logic [2:0] MEM_Rd, WB_Rd,
     input logic [2:0] Branch_Rs,
     input logic       MEM_RegWrite, WB_RegWrite,
-    output ForwardSel ForwardA, ForwardB, ForwardBranch
+    output ForwardSel ForwardA, ForwardB, ForwardBranch, 
+    output logic      ForwardMem
 );
 
     always_comb begin
@@ -47,6 +48,19 @@ module ForwardingUnit (
         else begin
             ForwardBranch = FORWARD_NONE;
         end
+
+        // ForwardMem logic
+        if (WB_RegWrite && (WB_Rd != 0) && (WB_Rd == MEM_Rd)) begin
+            // $display("[fwdUnit] WB_RegWrite = %b", WB_RegWrite);
+            ForwardMem = 1;
+        end else begin
+            ForwardMem = 0;
+        end
+
+        // print control signals for debugging from pipeline registers
+        // $display("[fwdUnit] MEM_RegWrite = %b, MEM_Rd = %d, WB_RegWrite = %b, WB_Rd = %d, ForwardA = %b, ForwardB = %b, ForwardBranch = %b, ForwardMem = %b",
+        //          MEM_RegWrite, MEM_Rd, WB_RegWrite, WB_Rd,
+        //          ForwardA, ForwardB, ForwardBranch, ForwardMem);
     end
 
 endmodule

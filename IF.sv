@@ -3,26 +3,35 @@ module IF_module(
   input [2:0] Target,
   input Init,
   input Stall,
+  input done,
   input CLK,
   output logic[7:0] PC
   );
 
-  logic signed [7:0] branch_offset;
+  logic signed [7:0] branch_target;
 	
 	// Sign-extend the target bits and multiply by 4
 	// We can only branch to a destination that is a multiple of 4
-	assign branch_offset = {{5{Target[2]}}, Target} << 2;
+	assign branch_target = Target << 3;
 
   always @(posedge CLK)
-	if(Init)
+	if(Init) begin
+	  $display("Resetting PC to 0");
 	  PC <= 0;
+	end
+	else if(done) begin
+	//   $display("Done, freezing PC, %t", $time);
+	  PC <= PC;
+	end
 	else if(Stall)
 	  PC <= PC;
 	else if(Branch) begin
-	  $display("Target = %b, branching to %b", Target, (PC + branch_offset));
-		PC <= PC + branch_offset;
+	//   $display("Target = %d", branch_target);
+		PC <= branch_target;
 	end
-	else
+	else begin
+		$display("Incrementing PC: %d, %t", PC, $time);
 	  PC <= PC+1;
+	end
 
 endmodule

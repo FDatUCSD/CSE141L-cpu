@@ -7,20 +7,26 @@ module DataMemory (
     output logic [7:0]  readData
 );
 
-    logic [7:0] memory [0:255];  // 256 x 8-bit memory array
+    logic [7:0] mem_core [0:255];  // 256 x 8-bit memory array
+
+    initial 
+        $readmemh("dataram_init.list", mem_core);
 
     // Read: Combinational
     always_comb begin
+        // $display("[DataMemory] memRead = %b, memWrite = %b, address = %h, writeData = %h", memRead, memWrite, address, writeData);
         if (memRead)
-            readData = memory[address];
+            readData = mem_core[address];
         else
-            readData = 8'b0;
+            readData = 8'bZ;
     end
 
     // Write: Synchronous
     always_ff @(posedge clk) begin
-        if (memWrite)
-            memory[address] <= writeData;
+        if (memWrite) begin
+            // $display("Writing %h to address %h", writeData, address);
+            mem_core[address] <= writeData;
+        end
     end
 
 endmodule
