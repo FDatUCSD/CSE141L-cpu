@@ -4,7 +4,7 @@ module ALU(
 	input logic [7:0] R2,
 	output logic [7:0] OUT,
 	output logic [1:0] OVERFLOW,
-	output logic ZF,
+	output logic ZF
 	);
 
 	always_comb begin

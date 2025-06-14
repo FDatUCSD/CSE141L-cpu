@@ -3,7 +3,7 @@ use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
 
-const BLOCK_SIZE: usize = 8;
+const BLOCK_SIZE: usize = 16;
 
 fn reg_to_bin(reg: &str) -> Option<String> {
     reg.trim_start_matches('r')

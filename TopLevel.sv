@@ -224,7 +224,7 @@ module TopLevel (
         .R2(forwardB_out),
         .OUT(alu_out),
         .OVERFLOW(alu_overflow),
-        .ZF(alu_zf),
+        .ZF(alu_zf)
     );
 
     // === EX/MEM REGISTER ===
