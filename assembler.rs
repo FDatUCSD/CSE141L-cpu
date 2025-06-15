@@ -67,7 +67,7 @@ fn main() {
     }
 
     let opcode_map: HashMap<&str, &str> = HashMap::from([
-        ("and", "000"),
+        ("sub", "000"),
         ("xor", "001"),
         ("shl", "010"),
         ("shr", "011"),

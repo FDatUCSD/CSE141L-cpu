@@ -19,7 +19,8 @@ module Control(
 			ctrl = '{
 				regWrite: 0, memRead: 0, memWrite: 0, branch: 0,
 				MemToReg: 0, OP: op,
-				incrementPage: 1, decrementPage: 0
+				incrementPage: 1, decrementPage: 0,	
+				incrementBranch: 0, decrementBranch: 0
 			};
 
 		end else if (instruction == 9'b001110000) begin
@@ -27,30 +28,51 @@ module Control(
 			ctrl = '{
 				regWrite: 0, memRead: 0, memWrite: 0, branch: 0,
 				MemToReg: 0, OP: op,
-				incrementPage: 0, decrementPage: 1
+				incrementPage: 0, decrementPage: 1,
+				incrementBranch: 0, decrementBranch: 0
 			};
 
+		end else if (instruction == 9'b001101000) begin
+			// Special instruction: increment branch
+			ctrl = '{
+				regWrite: 0, memRead: 0, memWrite: 0, branch: 0,
+				MemToReg: 0, OP: op,
+				incrementPage: 0, decrementPage: 0,
+				incrementBranch: 1, decrementBranch: 0
+			};
+		end else if (instruction == 9'b001100000) begin
+			// Special instruction: decrement branch
+			ctrl = '{
+				regWrite: 0, memRead: 0, memWrite: 0, branch: 0,
+				MemToReg: 0, OP: op,
+				incrementPage: 0, decrementPage: 0,
+				incrementBranch: 0, decrementBranch: 1
+			};
 		end else begin
 			case (op)
-				AND_OP, XOR_OP, SHL_OP, SHR_OP, ADD_OP: ctrl = '{
+				SUB_OP, XOR_OP, SHL_OP, SHR_OP, ADD_OP: ctrl = '{
 					regWrite: 1, memRead: 0, memWrite: 0, branch: 0,
 					MemToReg: 0, OP: op,
-					incrementPage: 0, decrementPage: 0
+					incrementPage: 0, decrementPage: 0,
+					incrementBranch: 0, decrementBranch: 0
 				};
 				LW_OP: ctrl = '{
 					regWrite: 1, memRead: 1, memWrite: 0, branch: 0,
 					MemToReg: 1, OP: op,
-					incrementPage: 0, decrementPage: 0
+					incrementPage: 0, decrementPage: 0, 
+					incrementBranch: 0, decrementBranch: 0
 				};
 				SW_OP: ctrl = '{
 					regWrite: 0, memRead: 0, memWrite: 1, branch: 0,
 					MemToReg: 0, OP: op,
-					incrementPage: 0, decrementPage: 0
+					incrementPage: 0, decrementPage: 0, 
+					incrementBranch: 0, decrementBranch: 0
 				};
 				BR_OP: ctrl = '{
 					regWrite: 0, memRead: 0, memWrite: 0, branch: 1,
 					MemToReg: 0, OP: op,
-					incrementPage: 0, decrementPage: 0
+					incrementPage: 0, decrementPage: 0, 
+					incrementBranch: 0, decrementBranch: 0
 				};
 				default: ctrl = '{default: 0, OP: op};
 			endcase

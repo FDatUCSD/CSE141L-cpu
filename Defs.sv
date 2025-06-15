@@ -9,6 +9,8 @@ package Defs;
         logic [2:0] OP;
         logic incrementPage;
         logic decrementPage;
+        logic incrementBranch;
+        logic decrementBranch;
     } ControlSignals;
 
     typedef enum logic [1:0] {
@@ -18,7 +20,7 @@ package Defs;
     } ForwardSel;
  
 	typedef enum logic [2:0] {
-		AND_OP  = 3'b000,
+		SUB_OP  = 3'b000,
 		XOR_OP  = 3'b001,
 		SHL_OP  = 3'b010,
 		SHR_OP  = 3'b011,

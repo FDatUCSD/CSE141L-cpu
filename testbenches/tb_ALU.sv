@@ -1,69 +1,59 @@
-`timescale 1ns / 1ps
+module ALU_tb;
 
-module tb_ALU;
+    logic [2:0] OP;
+    logic [7:0] R1, R2, OUT;
+    logic [1:0] OVERFLOW;
+    logic ZF;
 
-  // Inputs
-  logic [2:0] OP;
-  logic [7:0] R1, R2;
+    ALU dut (
+        .OP(OP),
+        .R1(R1),
+        .R2(R2),
+        .OUT(OUT),
+        .OVERFLOW(OVERFLOW),
+        .ZF(ZF)
+    );
 
-  // Outputs
-  logic [7:0] OUT;
-  logic [1:0] OVERFLOW;
-  logic ZF;
+    task check(input string name, input [7:0] expected_out, input [1:0] expected_ovf, input expected_zf);
+        if (OUT !== expected_out || OVERFLOW !== expected_ovf || ZF !== expected_zf) begin
+            $display("FAIL: %s => OUT: %b (expected %b), OVERFLOW: %b (expected %b), ZF: %b (expected %b)",
+                     name, OUT, expected_out, OVERFLOW, expected_ovf, ZF, expected_zf);
+        end else begin
+            $display("PASS: %s", name);
+        end
+    endtask
 
-  // Instantiate the ALU
-  ALU uut (
-    .OP(OP),
-    .R1(R1),
-    .R2(R2),
-    .OUT(OUT),
-    .OVERFLOW(OVERFLOW),
-    .ZF(ZF)
-  );
+    initial begin
+        // AND
+        OP = 3'b000; R1 = 8'b10101010; R2 = 8'b11001100;
+        #1; check("AND", 8'b10001000, 0, 0);
 
-  // Task to display the result in binary
-  task print_result(string op_name);
-    $display("[%s] R1 = %08b, R2 = %08b => OUT = %08b, OVERFLOW = %02b, ZF = %b", 
-             op_name, R1, R2, OUT, OVERFLOW, ZF);
-  endtask
+        // XOR
+        OP = 3'b001; R1 = 8'b10101010; R2 = 8'b11001100;
+        #1; check("XOR", 8'b01100110, 0, 0);
 
-  initial begin
-    $display("Starting ALU testbench...");
+        // SHL (corrected)
+        OP = 3'b010; R1 = 8'b10000000; R2 = 8'b00001111;
+        #1; check("SHL", 8'b00011111, 0, 0);  // Corrected expected output
 
-    // AND
-    OP = 3'b000; R1 = 8'b10101010; R2 = 8'b11001100;
-    #1; print_result("AND");
+        // SHR
+        OP = 3'b011; R1 = 8'b00000001; R2 = 8'b11110000;
+        #1; check("SHR", 8'b00000000, 0, 1);  // R1[0] is 1, R2[7:1] is 1111000
 
-    // XOR
-    OP = 3'b001; R1 = 8'b11110000; R2 = 8'b10101010;
-    #1; print_result("XOR");
+        // ADD without overflow
+        OP = 3'b100; R1 = 8'd10; R2 = 8'd20;
+        #1; check("ADD no overflow", 8'd30, 0, 0);
 
-    // SHL (left shift R2 by R1 bits)
-    OP = 3'b010; R1 = 3; R2 = 8'b00000001;
-    #1; print_result("SHL");
+        // ADD with overflow
+        OP = 3'b100; R1 = 8'hFF; R2 = 8'h02;
+        #1; check("ADD overflow", 8'h01, 2'b01, 0);
 
-    // SHR (right shift R2 by R1 bits)
-    OP = 3'b011; R1 = 2; R2 = 8'b10000000;
-    #1; print_result("SHR");
+        // ADD result zero
+        OP = 3'b100; R1 = 8'd200; R2 = 8'd56; // 200 + 56 = 256 -> 0
+        #1; check("ADD zero", 8'd0, 2'b01, 1);
 
-    // ADD (normal)
-    OP = 3'b100; R1 = 8'd15; R2 = 8'd10;
-    #1; print_result("ADD (normal)");
-
-    // ADD (overflow)
-    OP = 3'b100; R1 = 8'd255; R2 = 8'd255;
-    #1; print_result("ADD (overflow)");
-
-    // ADD (zero flag)
-    OP = 3'b100; R1 = 8'd0; R2 = 8'd0;
-    #1; print_result("ADD (ZF=1)");
-
-    // Invalid OP (default case)
-    OP = 3'b111; R1 = 8'hAA; R2 = 8'h55;
-    #1; print_result("INVALID");
-
-    $display("ALU testbench complete.");
-  end
+        $display("ALU tests finished.");
+        $finish;
+    end
 
 endmodule
-

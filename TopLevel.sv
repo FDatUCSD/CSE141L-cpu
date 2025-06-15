@@ -56,10 +56,11 @@ module TopLevel (
     logic [1:0] exp_error_detected;
     logic alu_exp_error;
     logic [2:0] pageBase;
+    logic [2:0] branchBase;
 
     assign cmp = (forwardBranch_out == 8'b0);
     assign branch_taken = (cmp && control_ctrl_out.branch);
-    assign flush = exp_error_detected || branch_taken;
+    assign flush = (|exp_error_detected) || branch_taken;
     assign branch_target = ifId_instr_out[2:0];
     assign idEx_imm_in = {5'b0, ifId_instr_out[5:3]};
     assign forwardA_regval = idEx_rs_val_out;
@@ -96,7 +97,8 @@ module TopLevel (
         .CLK(clk),
         .PC(pc),
         .done(done),
-        .exp_error(exp_error_detected)
+        .exp_error(exp_error_detected),
+        .base(branchBase)
     );
 
 
@@ -187,6 +189,14 @@ module TopLevel (
         .ImmVal_out(idEx_imm_out),
         .Rs_out(idEx_rs_out),
         .Rd_out(idEx_rd_out)
+    );
+
+    BranchPage branchPage(
+        .clk(clk),
+        .reset(reset),
+        .increment(idEx_ctrl_out.incrementBranch), // Increment page if needed
+        .decrement(idEx_ctrl_out.decrementBranch), // Decrement page if needed
+        .mem_page(branchBase) // Output the current memory page
     );
 
     // === FORWARDING UNIT ===

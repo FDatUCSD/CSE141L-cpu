@@ -15,7 +15,10 @@ module ALU(
 
 		case(OP)
 
-		3'b000: OUT = R1 & R2; // and r1 r2
+		3'b000: begin
+			{OVERFLOW, OUT} = R2 - R1; // sub r1 r2
+			ZF = (OUT == 0); // set zero flag if sub results in a 0
+		end
 		3'b001: OUT = R1 ^ R2; // xor r1 r2
 		3'b010: begin
 			OUT = {R2[6:0],R1[7]}; // shl r1 r2

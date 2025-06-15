@@ -6,6 +6,7 @@ module IF_module(
   input done,
   input CLK,
   input logic [1:0] exp_error,
+  input logic [2:0] base,
   output logic[9:0] PC
   );
 
@@ -13,7 +14,7 @@ module IF_module(
 	
 	// Sign-extend the target bits and multiply by 4
 	// We can only branch to a destination that is a multiple of 4
-	assign branch_target = Target << 5;
+	assign branch_target = (256 * base) + Target << 5;
 
   always @(posedge CLK)
 	if(Init) begin

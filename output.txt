@@ -1,0 +1,792 @@
+
+# This test case 0000000000000000 
+# 
+# data_mem.core0, 1 = xxxxxxxx  00000000                    0
+# Resetting PC to 0
+# data_mem.core0, 1 = 00000000  00000000                   45
+# what's feeding the case 0000000000000000
+# IN=0x0000,  DUT=0x0000, REF=0x0000, MATH=0x0000
+# Scores so far: vs REF=1, vs MATH=1, tests=1
+# This test case 0000000000000001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 00011100  00000000                20095
+# data_mem.core0, 1 = 00011100  00011100                21935
+# what's feeding the case 0000000000000001
+# IN=0x0001,  DUT=0x1c00, REF=0x1c00, MATH=0x1c00
+# Scores so far: vs REF=2, vs MATH=2, tests=2
+# This test case 0000000000000010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 00100000  00011100                40145
+# data_mem.core0, 1 = 00100000  00100000                41895
+# what's feeding the case 0000000000000010
+# IN=0x0002,  DUT=0x2000, REF=0x2000, MATH=0x2000
+# Scores so far: vs REF=3, vs MATH=3, tests=3
+# This test case 0000000000000011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 00100010  00100000                60195
+# data_mem.core0, 1 = 00100010  00100010                61945
+# what's feeding the case 0000000000000011
+# IN=0x0003,  DUT=0x2200, REF=0x2200, MATH=0x2200
+# Scores so far: vs REF=4, vs MATH=4, tests=4
+# This test case 0000000000001100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 00101010  00100010                80245
+# data_mem.core0, 1 = 00101010  00101010                81815
+# what's feeding the case 0000000000001100
+# IN=0x000c,  DUT=0x2a00, REF=0x2a00, MATH=0x2a00
+# Scores so far: vs REF=5, vs MATH=5, tests=5
+# This test case 0000000000110000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 00110010  00101010               100295
+# data_mem.core0, 1 = 00110010  00110010               101685
+# what's feeding the case 0000000000110000
+# IN=0x0030,  DUT=0x3200, REF=0x3200, MATH=0x3200
+# Scores so far: vs REF=6, vs MATH=6, tests=6
+# This test case 0001111111111111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001111  00110010               120345
+# data_mem.core0, 1 = 01001111  01001111               121105
+# what's feeding the case 0001111111111111
+# IN=0x1fff,  DUT=0x4fff, REF=0x4fff, MATH=0x4fff
+# Scores so far: vs REF=7, vs MATH=7, tests=7
+# This test case 0011111111111111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010011  01001111               140395
+# data_mem.core0, 1 = 01010011  01010011               141065
+# what's feeding the case 0011111111111111
+# IN=0x3fff,  DUT=0x53ff, REF=0x53ff, MATH=0x53ff
+# Scores so far: vs REF=8, vs MATH=8, tests=8
+# This test case 0111111111111111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010011               160445
+# data_mem.core0, 1 = 01010111  01010111               161025
+# what's feeding the case 0111111111111111
+# IN=0x7fff,  DUT=0x57ff, REF=0x57ff, MATH=0x57ff
+# Scores so far: vs REF=9, vs MATH=9, tests=9
+# This test case 1111111111111111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 10011100  01010111               180495
+# data_mem.core0, 1 = 10011100  10111100               181735
+# what's feeding the case 1111111111111111
+# IN=0xffff,  DUT=0xbc04, REF=0x9c00, MATH=0x9c00
+# Mismatch DUT vs REF: DUT=0xbc04 REF=0x9c00
+# Mismatch DUT vs MATH: DUT=0xbc04 MATH=0x9c00
+# Scores so far: vs REF=9, vs MATH=9, tests=10
+# This test case 1111111111111110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 10100000  10111100               200545
+# data_mem.core0, 1 = 10100000  10100000               202345
+# what's feeding the case 1111111111111110
+# IN=0xfffe,  DUT=0xa000, REF=0xa000, MATH=0xa000
+# Scores so far: vs REF=10, vs MATH=10, tests=11
+# This test case 1111111111111101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 10100010  10100000               220595
+# data_mem.core0, 1 = 10100010  10100010               222395
+# what's feeding the case 1111111111111101
+# IN=0xfffd,  DUT=0xa200, REF=0xa200, MATH=0xa200
+# Scores so far: vs REF=11, vs MATH=11, tests=12
+# This test case 1111111111110100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 10101010  10100010               240645
+# data_mem.core0, 1 = 10101010  10101010               242265
+# what's feeding the case 1111111111110100
+# IN=0xfff4,  DUT=0xaa00, REF=0xaa00, MATH=0xaa00
+# Scores so far: vs REF=12, vs MATH=12, tests=13
+# This test case 1111111111010000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 10110010  10101010               260695
+# data_mem.core0, 1 = 10110010  10110010               262135
+# what's feeding the case 1111111111010000
+# IN=0xffd0,  DUT=0xb200, REF=0xb200, MATH=0xb200
+# Scores so far: vs REF=13, vs MATH=13, tests=14
+# This test case 1100000000000000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 11010100  10110010               280745
+# data_mem.core0, 1 = 11010100  11010011               281485
+# what's feeding the case 1100000000000000
+# IN=0xc000,  DUT=0xd3e0, REF=0xd400, MATH=0xd400
+# Mismatch DUT vs REF: DUT=0xd3e0 REF=0xd400
+# Mismatch DUT vs MATH: DUT=0xd3e0 MATH=0xd400
+# Scores so far: vs REF=13, vs MATH=13, tests=15
+# This test case 0100000000000000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  11010011               300795
+# data_mem.core0, 1 = 01010100  01010100               301395
+# what's feeding the case 0100000000000000
+# IN=0x4000,  DUT=0x5400, REF=0x5400, MATH=0x5400
+# Scores so far: vs REF=14, vs MATH=14, tests=16
+# This test case 1000000000000000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 11011000  01010100               320845
+# data_mem.core0, 1 = 11011000  11010111               321495
+# what's feeding the case 1000000000000000
+# IN=0x8000,  DUT=0xd7f0, REF=0xd800, MATH=0xd800
+# Mismatch DUT vs REF: DUT=0xd7f0 REF=0xd800
+# Mismatch DUT vs MATH: DUT=0xd7f0 MATH=0xd800
+# Scores so far: vs REF=14, vs MATH=14, tests=17
+# This test case 1000000000000001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 11010111  11010111               340895
+# what's feeding the case 1000000000000001
+# IN=0x8001,  DUT=0xd7ff, REF=0xd7ff, MATH=0xd7ff
+# Scores so far: vs REF=15, vs MATH=15, tests=18
+# This test case 0011010100100100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010010  11010111               360945
+# data_mem.core0, 1 = 01010010  01010010               361615
+# what's feeding the case 0011010100100100
+# IN=0x3524,  DUT=0x52a4, REF=0x52a4, MATH=0x52a4
+# Scores so far: vs REF=16, vs MATH=16, tests=19
+# This test case 0101111010000001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010010               380995
+# data_mem.core0, 1 = 01010101  01010101               381575
+# what's feeding the case 0101111010000001
+# IN=0x5e81,  DUT=0x55e8, REF=0x55e8, MATH=0x55e8
+# Scores so far: vs REF=17, vs MATH=17, tests=20
+# This test case 0101011000001001 
+# 
+# Resetting PC to 0
+# what's feeding the case 0101011000001001
+# IN=0x5609,  DUT=0x5560, REF=0x5560, MATH=0x5560
+# Scores so far: vs REF=18, vs MATH=18, tests=21
+# This test case 0101011001100011 
+# 
+# Resetting PC to 0
+# what's feeding the case 0101011001100011
+# IN=0x5663,  DUT=0x5566, REF=0x5566, MATH=0x5566
+# Scores so far: vs REF=19, vs MATH=19, tests=22
+# This test case 0111101100001101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010101               441145
+# data_mem.core0, 1 = 01010111  01010111               441725
+# what's feeding the case 0111101100001101
+# IN=0x7b0d,  DUT=0x57b0, REF=0x57b0, MATH=0x57b0
+# Scores so far: vs REF=20, vs MATH=20, tests=23
+# This test case 0001100110001101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001110  01010111               461195
+# data_mem.core0, 1 = 01001110  01001110               461955
+# what's feeding the case 0001100110001101
+# IN=0x198d,  DUT=0x4e63, REF=0x4e63, MATH=0x4e63
+# Scores so far: vs REF=21, vs MATH=21, tests=24
+# This test case 0000010001100101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01000100  01001110               481245
+# data_mem.core0, 1 = 01000100  01000100               482185
+# what's feeding the case 0000010001100101
+# IN=0x0465,  DUT=0x4465, REF=0x4465, MATH=0x4465
+# Scores so far: vs REF=22, vs MATH=22, tests=25
+# This test case 0101001000010010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01000100               501295
+# data_mem.core0, 1 = 01010101  01010101               501875
+# what's feeding the case 0101001000010010
+# IN=0x5212,  DUT=0x5521, REF=0x5521, MATH=0x5521
+# Scores so far: vs REF=23, vs MATH=23, tests=26
+# This test case 0110001100000001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010101               521345
+# data_mem.core0, 1 = 01010110  01010110               521925
+# what's feeding the case 0110001100000001
+# IN=0x6301,  DUT=0x5630, REF=0x5630, MATH=0x5630
+# Scores so far: vs REF=24, vs MATH=24, tests=27
+# This test case 0100110100001101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010110               541395
+# data_mem.core0, 1 = 01010100  01010100               541975
+# what's feeding the case 0100110100001101
+# IN=0x4d0d,  DUT=0x54d0, REF=0x54d0, MATH=0x54d0
+# Scores so far: vs REF=25, vs MATH=25, tests=28
+# This test case 0111000101110110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010100               561445
+# data_mem.core0, 1 = 01010111  01010111               562025
+# what's feeding the case 0111000101110110
+# IN=0x7176,  DUT=0x5717, REF=0x5717, MATH=0x5717
+# Scores so far: vs REF=26, vs MATH=26, tests=29
+# This test case 0100110100111101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010111               581495
+# data_mem.core0, 1 = 01010100  01010100               582075
+# what's feeding the case 0100110100111101
+# IN=0x4d3d,  DUT=0x54d3, REF=0x54d3, MATH=0x54d3
+# Scores so far: vs REF=27, vs MATH=27, tests=30
+# This test case 0101011111101101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010100               601545
+# data_mem.core0, 1 = 01010101  01010101               602125
+# what's feeding the case 0101011111101101
+# IN=0x57ed,  DUT=0x557e, REF=0x557e, MATH=0x557e
+# Scores so far: vs REF=28, vs MATH=28, tests=31
+# This test case 0111011110001100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010101               621595
+# data_mem.core0, 1 = 01010111  01010111               622175
+# what's feeding the case 0111011110001100
+# IN=0x778c,  DUT=0x5778, REF=0x5778, MATH=0x5778
+# Scores so far: vs REF=29, vs MATH=29, tests=32
+# This test case 0110100111111001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010111               641645
+# data_mem.core0, 1 = 01010110  01010110               642225
+# what's feeding the case 0110100111111001
+# IN=0x69f9,  DUT=0x569f, REF=0x569f, MATH=0x569f
+# Scores so far: vs REF=30, vs MATH=30, tests=33
+# This test case 0010010011000110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010000  01010110               661695
+# data_mem.core0, 1 = 01010000  01010000               662365
+# what's feeding the case 0010010011000110
+# IN=0x24c6,  DUT=0x5098, REF=0x5098, MATH=0x5098
+# Scores so far: vs REF=31, vs MATH=31, tests=34
+# This test case 0000010011000101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01000100  01010000               681745
+# data_mem.core0, 1 = 01000100  01000100               682685
+# what's feeding the case 0000010011000101
+# IN=0x04c5,  DUT=0x44c5, REF=0x44c5, MATH=0x44c5
+# Scores so far: vs REF=32, vs MATH=32, tests=35
+# This test case 0101001010101010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01000100               701795
+# data_mem.core0, 1 = 01010101  01010101               702375
+# what's feeding the case 0101001010101010
+# IN=0x52aa,  DUT=0x552a, REF=0x552a, MATH=0x552a
+# Scores so far: vs REF=33, vs MATH=33, tests=36
+# This test case 0111011111100101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010101               721845
+# data_mem.core0, 1 = 01010111  01010111               722425
+# what's feeding the case 0111011111100101
+# IN=0x77e5,  DUT=0x577e, REF=0x577e, MATH=0x577e
+# Scores so far: vs REF=34, vs MATH=34, tests=37
+# This test case 0111001001110111 
+# 
+# Resetting PC to 0
+# what's feeding the case 0111001001110111
+# IN=0x7277,  DUT=0x5727, REF=0x5727, MATH=0x5727
+# Scores so far: vs REF=35, vs MATH=35, tests=38
+# This test case 0101011000010010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010111               761945
+# data_mem.core0, 1 = 01010101  01010101               762525
+# what's feeding the case 0101011000010010
+# IN=0x5612,  DUT=0x5561, REF=0x5561, MATH=0x5561
+# Scores so far: vs REF=36, vs MATH=36, tests=39
+# This test case 0101101110001111 
+# 
+# Resetting PC to 0
+# what's feeding the case 0101101110001111
+# IN=0x5b8f,  DUT=0x55b8, REF=0x55b8, MATH=0x55b8
+# Scores so far: vs REF=37, vs MATH=37, tests=40
+# This test case 0110100111110010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010101               802045
+# data_mem.core0, 1 = 01010110  01010110               802625
+# what's feeding the case 0110100111110010
+# IN=0x69f2,  DUT=0x569f, REF=0x569f, MATH=0x569f
+# Scores so far: vs REF=38, vs MATH=38, tests=41
+# This test case 0001011011001110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001101  01010110               822095
+# data_mem.core0, 1 = 01001101  01001101               822855
+# what's feeding the case 0001011011001110
+# IN=0x16ce,  DUT=0x4db3, REF=0x4db3, MATH=0x4db3
+# Scores so far: vs REF=39, vs MATH=39, tests=42
+# This test case 0111101011101000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01001101               842145
+# data_mem.core0, 1 = 01010111  01010111               842725
+# what's feeding the case 0111101011101000
+# IN=0x7ae8,  DUT=0x57ae, REF=0x57ae, MATH=0x57ae
+# Scores so far: vs REF=40, vs MATH=40, tests=43
+# This test case 0100111011000101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010111               862195
+# data_mem.core0, 1 = 01010100  01010100               862775
+# what's feeding the case 0100111011000101
+# IN=0x4ec5,  DUT=0x54ec, REF=0x54ec, MATH=0x54ec
+# Scores so far: vs REF=41, vs MATH=41, tests=44
+# This test case 0100100101011100 
+# 
+# Resetting PC to 0
+# what's feeding the case 0100100101011100
+# IN=0x495c,  DUT=0x5495, REF=0x5495, MATH=0x5495
+# Scores so far: vs REF=42, vs MATH=42, tests=45
+# This test case 0010100010111101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010001  01010100               902295
+# data_mem.core0, 1 = 01010001  01010001               902965
+# what's feeding the case 0010100010111101
+# IN=0x28bd,  DUT=0x5117, REF=0x5117, MATH=0x5117
+# Scores so far: vs REF=43, vs MATH=43, tests=46
+# This test case 0101100000101101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010001               922345
+# data_mem.core0, 1 = 01010101  01010101               922925
+# what's feeding the case 0101100000101101
+# IN=0x582d,  DUT=0x5582, REF=0x5582, MATH=0x5582
+# Scores so far: vs REF=44, vs MATH=44, tests=47
+# This test case 0010011001100101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010000  01010101               942395
+# data_mem.core0, 1 = 01010000  01010000               943065
+# what's feeding the case 0010011001100101
+# IN=0x2665,  DUT=0x50cc, REF=0x50cc, MATH=0x50cc
+# Scores so far: vs REF=45, vs MATH=45, tests=48
+# This test case 0110001001100011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010000               962445
+# data_mem.core0, 1 = 01010110  01010110               963025
+# what's feeding the case 0110001001100011
+# IN=0x6263,  DUT=0x5626, REF=0x5626, MATH=0x5626
+# Scores so far: vs REF=46, vs MATH=46, tests=49
+# This test case 0000011100001010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01000111  01010110               982495
+# data_mem.core0, 1 = 01000111  01000111               983435
+# what's feeding the case 0000011100001010
+# IN=0x070a,  DUT=0x470a, REF=0x470a, MATH=0x470a
+# Scores so far: vs REF=47, vs MATH=47, tests=50
+# This test case 0010001010000000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010000  01000111              1002545
+# data_mem.core0, 1 = 01010000  01010000              1003215
+# what's feeding the case 0010001010000000
+# IN=0x2280,  DUT=0x5050, REF=0x5050, MATH=0x5050
+# Scores so far: vs REF=48, vs MATH=48, tests=51
+# This test case 0010000100100000 
+# 
+# Resetting PC to 0
+# what's feeding the case 0010000100100000
+# IN=0x2120,  DUT=0x5024, REF=0x5024, MATH=0x5024
+# Scores so far: vs REF=49, vs MATH=49, tests=52
+# This test case 0100010110101010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010000              1042645
+# data_mem.core0, 1 = 01010100  01010100              1043225
+# what's feeding the case 0100010110101010
+# IN=0x45aa,  DUT=0x545a, REF=0x545a, MATH=0x545a
+# Scores so far: vs REF=50, vs MATH=50, tests=53
+# This test case 0100110010011101 
+# 
+# Resetting PC to 0
+# what's feeding the case 0100110010011101
+# IN=0x4c9d,  DUT=0x54c9, REF=0x54c9, MATH=0x54c9
+# Scores so far: vs REF=51, vs MATH=51, tests=54
+# This test case 0011111010010110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010011  01010100              1082745
+# data_mem.core0, 1 = 01010011  01010011              1083415
+# what's feeding the case 0011111010010110
+# IN=0x3e96,  DUT=0x53d2, REF=0x53d2, MATH=0x53d2
+# Scores so far: vs REF=52, vs MATH=52, tests=55
+# This test case 0011100000010011 
+# 
+# Resetting PC to 0
+# what's feeding the case 0011100000010011
+# IN=0x3813,  DUT=0x5302, REF=0x5302, MATH=0x5302
+# Scores so far: vs REF=53, vs MATH=53, tests=56
+# This test case 0011100000001101 
+# 
+# Resetting PC to 0
+# what's feeding the case 0011100000001101
+# IN=0x380d,  DUT=0x5301, REF=0x5301, MATH=0x5301
+# Scores so far: vs REF=54, vs MATH=54, tests=57
+# This test case 0101011001010011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010011              1142895
+# data_mem.core0, 1 = 01010101  01010101              1143475
+# what's feeding the case 0101011001010011
+# IN=0x5653,  DUT=0x5565, REF=0x5565, MATH=0x5565
+# Scores so far: vs REF=55, vs MATH=55, tests=58
+# This test case 0101110101101011 
+# 
+# Resetting PC to 0
+# what's feeding the case 0101110101101011
+# IN=0x5d6b,  DUT=0x55d6, REF=0x55d6, MATH=0x55d6
+# Scores so far: vs REF=56, vs MATH=56, tests=59
+# This test case 0010101011010101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010001  01010101              1182995
+# data_mem.core0, 1 = 01010001  01010001              1183665
+# what's feeding the case 0010101011010101
+# IN=0x2ad5,  DUT=0x515a, REF=0x515a, MATH=0x515a
+# Scores so far: vs REF=57, vs MATH=57, tests=60
+# This test case 0100101000000010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010001              1203045
+# data_mem.core0, 1 = 01010100  01010100              1203625
+# what's feeding the case 0100101000000010
+# IN=0x4a02,  DUT=0x54a0, REF=0x54a0, MATH=0x54a0
+# Scores so far: vs REF=58, vs MATH=58, tests=61
+# This test case 0011111010101110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010011  01010100              1223095
+# data_mem.core0, 1 = 01010011  01010011              1223765
+# what's feeding the case 0011111010101110
+# IN=0x3eae,  DUT=0x53d5, REF=0x53d5, MATH=0x53d5
+# Scores so far: vs REF=59, vs MATH=59, tests=62
+# This test case 0110100100011101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010011              1243145
+# data_mem.core0, 1 = 01010110  01010110              1243725
+# what's feeding the case 0110100100011101
+# IN=0x691d,  DUT=0x5691, REF=0x5691, MATH=0x5691
+# Scores so far: vs REF=60, vs MATH=60, tests=63
+# This test case 0111001011001111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010110              1263195
+# data_mem.core0, 1 = 01010111  01010111              1263775
+# what's feeding the case 0111001011001111
+# IN=0x72cf,  DUT=0x572c, REF=0x572c, MATH=0x572c
+# Scores so far: vs REF=61, vs MATH=61, tests=64
+# This test case 0100100100100011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010111              1283245
+# data_mem.core0, 1 = 01010100  01010100              1283825
+# what's feeding the case 0100100100100011
+# IN=0x4923,  DUT=0x5492, REF=0x5492, MATH=0x5492
+# Scores so far: vs REF=62, vs MATH=62, tests=65
+# This test case 0110010100001010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010100              1303295
+# data_mem.core0, 1 = 01010110  01010110              1303875
+# what's feeding the case 0110010100001010
+# IN=0x650a,  DUT=0x5650, REF=0x5650, MATH=0x5650
+# Scores so far: vs REF=63, vs MATH=63, tests=66
+# This test case 0000101011001010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001001  01010110              1323345
+# data_mem.core0, 1 = 01001001  01001001              1324195
+# what's feeding the case 0000101011001010
+# IN=0x0aca,  DUT=0x4965, REF=0x4965, MATH=0x4965
+# Scores so far: vs REF=64, vs MATH=64, tests=67
+# This test case 0100110000111100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01001001              1343395
+# data_mem.core0, 1 = 01010100  01010100              1343975
+# what's feeding the case 0100110000111100
+# IN=0x4c3c,  DUT=0x54c3, REF=0x54c3, MATH=0x54c3
+# Scores so far: vs REF=65, vs MATH=65, tests=68
+# This test case 0011110111110010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010011  01010100              1363445
+# data_mem.core0, 1 = 01010011  01010011              1364115
+# what's feeding the case 0011110111110010
+# IN=0x3df2,  DUT=0x53be, REF=0x53be, MATH=0x53be
+# Scores so far: vs REF=66, vs MATH=66, tests=69
+# This test case 0110000110001010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010011              1383495
+# data_mem.core0, 1 = 01010110  01010110              1384075
+# what's feeding the case 0110000110001010
+# IN=0x618a,  DUT=0x5618, REF=0x5618, MATH=0x5618
+# Scores so far: vs REF=67, vs MATH=67, tests=70
+# This test case 0011001101000001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010010  01010110              1403545
+# data_mem.core0, 1 = 01010010  01010010              1404215
+# what's feeding the case 0011001101000001
+# IN=0x3341,  DUT=0x5268, REF=0x5268, MATH=0x5268
+# Scores so far: vs REF=68, vs MATH=68, tests=71
+# This test case 0011010011011000 
+# 
+# Resetting PC to 0
+# what's feeding the case 0011010011011000
+# IN=0x34d8,  DUT=0x529b, REF=0x529b, MATH=0x529b
+# Scores so far: vs REF=69, vs MATH=69, tests=72
+# This test case 0111001101111000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010010              1443645
+# data_mem.core0, 1 = 01010111  01010111              1444225
+# what's feeding the case 0111001101111000
+# IN=0x7378,  DUT=0x5737, REF=0x5737, MATH=0x5737
+# Scores so far: vs REF=70, vs MATH=70, tests=73
+# This test case 0001001010001001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001100  01010111              1463695
+# data_mem.core0, 1 = 01001100  01001100              1464455
+# what's feeding the case 0001001010001001
+# IN=0x1289,  DUT=0x4ca2, REF=0x4ca2, MATH=0x4ca2
+# Scores so far: vs REF=71, vs MATH=71, tests=74
+# This test case 0000110111101011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001010  01001100              1483745
+# data_mem.core0, 1 = 01001010  01001010              1484595
+# what's feeding the case 0000110111101011
+# IN=0x0deb,  DUT=0x4af5, REF=0x4af5, MATH=0x4af5
+# Scores so far: vs REF=72, vs MATH=72, tests=75
+# This test case 0110010110110110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01001010              1503795
+# data_mem.core0, 1 = 01010110  01010110              1504375
+# what's feeding the case 0110010110110110
+# IN=0x65b6,  DUT=0x565b, REF=0x565b, MATH=0x565b
+# Scores so far: vs REF=73, vs MATH=73, tests=76
+# This test case 0111100111000110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01010110              1523845
+# data_mem.core0, 1 = 01010111  01010111              1524425
+# what's feeding the case 0111100111000110
+# IN=0x79c6,  DUT=0x579c, REF=0x579c, MATH=0x579c
+# Scores so far: vs REF=74, vs MATH=74, tests=77
+# This test case 0001001110101110 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001100  01010111              1543895
+# data_mem.core0, 1 = 01001100  01001100              1544655
+# what's feeding the case 0001001110101110
+# IN=0x13ae,  DUT=0x4ceb, REF=0x4ceb, MATH=0x4ceb
+# Scores so far: vs REF=75, vs MATH=75, tests=78
+# This test case 0000001010111100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01000001  01001100              1563945
+# data_mem.core0, 1 = 01000001  01000001              1564975
+# what's feeding the case 0000001010111100
+# IN=0x02bc,  DUT=0x4178, REF=0x4178, MATH=0x4178
+# Scores so far: vs REF=76, vs MATH=76, tests=79
+# This test case 0101110100101010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01000001              1583995
+# data_mem.core0, 1 = 01010101  01010101              1584575
+# what's feeding the case 0101110100101010
+# IN=0x5d2a,  DUT=0x55d2, REF=0x55d2, MATH=0x55d2
+# Scores so far: vs REF=77, vs MATH=77, tests=80
+# This test case 0001101000001011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001110  01010101              1604045
+# data_mem.core0, 1 = 01001110  01001110              1604805
+# what's feeding the case 0001101000001011
+# IN=0x1a0b,  DUT=0x4e82, REF=0x4e82, MATH=0x4e82
+# Scores so far: vs REF=78, vs MATH=78, tests=81
+# This test case 0011111001110001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010011  01001110              1624095
+# data_mem.core0, 1 = 01010011  01010011              1624765
+# what's feeding the case 0011111001110001
+# IN=0x3e71,  DUT=0x53ce, REF=0x53ce, MATH=0x53ce
+# Scores so far: vs REF=79, vs MATH=79, tests=82
+# This test case 0100000110000101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010011              1644145
+# data_mem.core0, 1 = 01010100  01010100              1644725
+# what's feeding the case 0100000110000101
+# IN=0x4185,  DUT=0x5418, REF=0x5418, MATH=0x5418
+# Scores so far: vs REF=80, vs MATH=80, tests=83
+# This test case 0101010101001111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010100              1664195
+# data_mem.core0, 1 = 01010101  01010101              1664775
+# what's feeding the case 0101010101001111
+# IN=0x554f,  DUT=0x5554, REF=0x5554, MATH=0x5554
+# Scores so far: vs REF=81, vs MATH=81, tests=84
+# This test case 0110000000111011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010101              1684245
+# data_mem.core0, 1 = 01010110  01010110              1684825
+# what's feeding the case 0110000000111011
+# IN=0x603b,  DUT=0x5603, REF=0x5603, MATH=0x5603
+# Scores so far: vs REF=82, vs MATH=82, tests=85
+# This test case 0011001100111010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010010  01010110              1704295
+# data_mem.core0, 1 = 01010010  01010010              1704965
+# what's feeding the case 0011001100111010
+# IN=0x333a,  DUT=0x5267, REF=0x5267, MATH=0x5267
+# Scores so far: vs REF=83, vs MATH=83, tests=86
+# This test case 0011001001111110 
+# 
+# Resetting PC to 0
+# what's feeding the case 0011001001111110
+# IN=0x327e,  DUT=0x524f, REF=0x524f, MATH=0x524f
+# Scores so far: vs REF=84, vs MATH=84, tests=87
+# This test case 0100101100010101 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01010010              1744395
+# data_mem.core0, 1 = 01010100  01010100              1744975
+# what's feeding the case 0100101100010101
+# IN=0x4b15,  DUT=0x54b1, REF=0x54b1, MATH=0x54b1
+# Scores so far: vs REF=85, vs MATH=85, tests=88
+# This test case 0001101111110001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001110  01010100              1764445
+# data_mem.core0, 1 = 01001110  01001110              1765205
+# what's feeding the case 0001101111110001
+# IN=0x1bf1,  DUT=0x4efc, REF=0x4efc, MATH=0x4efc
+# Scores so far: vs REF=86, vs MATH=86, tests=89
+# This test case 0100101111011001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01001110              1784495
+# data_mem.core0, 1 = 01010100  01010100              1785075
+# what's feeding the case 0100101111011001
+# IN=0x4bd9,  DUT=0x54bd, REF=0x54bd, MATH=0x54bd
+# Scores so far: vs REF=87, vs MATH=87, tests=90
+# This test case 0000011101100010 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01000111  01010100              1804545
+# data_mem.core0, 1 = 01000111  01000111              1805485
+# what's feeding the case 0000011101100010
+# IN=0x0762,  DUT=0x4762, REF=0x4762, MATH=0x4762
+# Scores so far: vs REF=88, vs MATH=88, tests=91
+# This test case 0111101101001100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010111  01000111              1824595
+# data_mem.core0, 1 = 01010111  01010111              1825175
+# what's feeding the case 0111101101001100
+# IN=0x7b4c,  DUT=0x57b4, REF=0x57b4, MATH=0x57b4
+# Scores so far: vs REF=89, vs MATH=89, tests=92
+# This test case 0101010110011111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010111              1844645
+# data_mem.core0, 1 = 01010101  01010101              1845225
+# what's feeding the case 0101010110011111
+# IN=0x559f,  DUT=0x5559, REF=0x5559, MATH=0x5559
+# Scores so far: vs REF=90, vs MATH=90, tests=93
+# This test case 0010000110001111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010000  01010101              1864695
+# data_mem.core0, 1 = 01010000  01010000              1865365
+# what's feeding the case 0010000110001111
+# IN=0x218f,  DUT=0x5031, REF=0x5031, MATH=0x5031
+# Scores so far: vs REF=91, vs MATH=91, tests=94
+# This test case 0010100111111000 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010001  01010000              1884745
+# data_mem.core0, 1 = 01010001  01010001              1885415
+# what's feeding the case 0010100111111000
+# IN=0x29f8,  DUT=0x513f, REF=0x513f, MATH=0x513f
+# Scores so far: vs REF=92, vs MATH=92, tests=95
+# This test case 0110000010110111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010110  01010001              1904795
+# data_mem.core0, 1 = 01010110  01010110              1905375
+# what's feeding the case 0110000010110111
+# IN=0x60b7,  DUT=0x560b, REF=0x560b, MATH=0x560b
+# Scores so far: vs REF=93, vs MATH=93, tests=96
+# This test case 0101011010011111 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010101  01010110              1924845
+# data_mem.core0, 1 = 01010101  01010101              1925425
+# what's feeding the case 0101011010011111
+# IN=0x569f,  DUT=0x5569, REF=0x5569, MATH=0x5569
+# Scores so far: vs REF=94, vs MATH=94, tests=97
+# This test case 0001010001011100 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01001101  01010101              1944895
+# data_mem.core0, 1 = 01001101  01001101              1945655
+# what's feeding the case 0001010001011100
+# IN=0x145c,  DUT=0x4d17, REF=0x4d17, MATH=0x4d17
+# Scores so far: vs REF=95, vs MATH=95, tests=98
+# This test case 0100000001011011 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010100  01001101              1964945
+# data_mem.core0, 1 = 01010100  01010100              1965525
+# what's feeding the case 0100000001011011
+# IN=0x405b,  DUT=0x5405, REF=0x5405, MATH=0x5405
+# Scores so far: vs REF=96, vs MATH=96, tests=99
+# This test case 0011011110001001 
+# 
+# Resetting PC to 0
+# data_mem.core0, 1 = 01010010  01010100              1984995
+# data_mem.core0, 1 = 01010010  01010010              1985665
+# what's feeding the case 0011011110001001
+# IN=0x3789,  DUT=0x52f1, REF=0x52f1, MATH=0x52f1
+# Scores so far: vs REF=97, vs MATH=97, tests=100
+# This test case 0011001001001001 
+# 
+# Resetting PC to 0
+# what's feeding the case 0011001001001001
+# IN=0x3249,  DUT=0x5249, REF=0x5249, MATH=0x5249
+# Scores so far: vs REF=98, vs MATH=98, tests=101
+# scores =          98          98 out of         101
+# ** Note: $stop    : C:/Users/Big Boss/Desktop/CPU1/CPU1/cse141l/new_fix2flt_tb.sv(87)
+#    Time: 2025075 ns  Iteration: 0  Instance: /new_int2flt_tb
+# Break in Module new_int2flt_tb at C:/Users/Big Boss/Desktop/CPU1/CPU1/cse141l/new_fix2flt_tb.sv line 87
